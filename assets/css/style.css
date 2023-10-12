@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Gabarito&display=swap');
+
+* {
+    font-family: "Gabarito";
+    font-weight: 400;
+    font-size: 16px;
+    scroll-behavior: smooth !important;
+    scroll-padding-top: 120px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10%;
+}
+
+body {
+    color: black;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    margin-left: 5rem;
+    padding: 1rem;
+}
+
+h1 {
+    font-size: 23px;
+    cursor: default;
+}
+
+li, a, button {
+    color: black;
+    text-decoration: none;
+}
+
+.logo {
+    cursor: pointer;
+}
+
+.nav-links {
+    list-style: none;
+}
+
+.nav-links li {
+    display:inline-block;
+    padding: 0px 20px;
+}
+
+.nav-links li a {
+    transition: all 0.3s ease 0s;
+}
+
+.nav-links li a:hover {
+    color: #0088a9;
+}
+
+button {
+    padding: 9px 25px;
+    background-color:rgb(171, 224, 184);
+    border:none;
+    border-radius:50px;
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+}
+
+#icon {
+    filter: none;
+}
+
+#icon:hover {
+    filter: hue-rotate(90);
+}

@@ -20,6 +20,11 @@ body {
     min-height: 100vh;
 }
 
+/*
+    Todo: fix spacing between menu button and title
+    Separate navbar1 and navbar 2
+*/
+
 nav {
     background-color: white;
     box-shadow: 5px 5px 5px rgba(0,0,0,0.1);
@@ -35,7 +40,7 @@ nav ul {
 }
 
 nav li {
-    height: 50px;
+    height: 100%;
     width: 100%;
     padding: 0 5px;
 }
@@ -49,25 +54,46 @@ nav a {
     color: black;
 }
 
-nav li:first-child li:nth-child(2){
-    margin-right: auto;
+.sbButton {
+    margin-left: auto;
+    size: 5px;
+    padding: 0;
+    justify-content: flex-start;
 }
+
+.title {
+    margin-left: auto;
+    justify-content: flex-start;
+
+}
+
+.searchBar {
+    height:100%;
+    width:100%;
+    background-image: url(/images/search-icon.svg);
+    background-repeat: no-repeat;
+}
+
+/*
+    Todo: fix spacing
+*/
 
 .sidebar {
     position: fixed;
     background-color: rgb(182, 199, 186);
     top: 0;
-    right: 0;
+    right: 1;
     height: 100%;
     width: 250px;
     z-index: 0;
     display: none;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
+    align-items: end;
+    justify-content: flex-end;
 }
 
 .sidebar li {
+    
     width: 100%;
 }
 

@@ -3,7 +3,6 @@
 * {
     font-family: "Gabarito";
     font-weight: 400;
-    font-size: 16px;
     scroll-behavior: smooth !important;
     scroll-padding-top: 120px;
     margin: 0;
@@ -20,10 +19,72 @@ body {
     min-height: 100vh;
 }
 
+.card {
+    overflow: hidden;
+    box-shadow: 0px 2px 20px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: transfom 200ms ease-in;
+    max-width: 12rem;
+    margin: 0.625rem;
+}
+
+.cardimage {
+    height: 12rem;
+    width: 100%;
+    object-fit: cover;
+}
+
+.cardtitle {
+    padding: 1rem;
+}
+
+.carddescription {
+    padding: 0 1rem;
+}
+
+.cardbutton {
+    margin: 1rem;
+    padding: 1rem;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 1rem;
+    border: 2px solid;
+    background: transparent;
+    transition:
+        background 200ms ease-in,
+        color 200ms ease-in;
+}
+
+.card:hover {
+    transform:scale(1.02);
+}
+
+.cardbutton:hover {
+    background: green;
+    color: white;
+}
+
+.carousel {
+    /* temp grid*/
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem,14rem));
+    grid-gap: 0.2rem;
+    justify-content: center;
+}
+
+/*
+    Todo: fix spacing between menu button and title
+    Separate navbar1 and navbar 2
+*/
+
 nav {
     background-color: white;
     box-shadow: 5px 5px 5px rgba(0,0,0,0.1);
     width: 100%;
+    font-size: 16px;
 }
 
 nav ul {
@@ -35,7 +96,7 @@ nav ul {
 }
 
 nav li {
-    height: 50px;
+    height: 100%;
     width: 100%;
     padding: 0 5px;
 }
@@ -49,25 +110,46 @@ nav a {
     color: black;
 }
 
-nav li:first-child li:nth-child(2){
-    margin-right: auto;
+.sbButton {
+    margin-left: auto;
+    size: 5px;
+    padding: 0;
+    justify-content: flex-start;
 }
+
+.title {
+    margin-left: auto;
+    justify-content: flex-start;
+
+}
+
+.searchBar {
+    height:100%;
+    width:100%;
+    background-image: url(/images/search-icon.svg);
+    background-repeat: no-repeat;
+}
+
+/*
+    Todo: fix spacing
+*/
 
 .sidebar {
     position: fixed;
     background-color: rgb(182, 199, 186);
     top: 0;
-    right: 0;
+    right: 1;
     height: 100%;
     width: 250px;
     z-index: 0;
     display: none;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
+    align-items: end;
+    justify-content: flex-end;
 }
 
 .sidebar li {
+    
     width: 100%;
 }
 
@@ -77,6 +159,19 @@ nav li:first-child li:nth-child(2){
 
 .menuButton {
     display: none;
+}
+
+.announcement {
+    width: 100%;
+    border: 0.125rem;
+    border-style:dashed;
+    background-color: rgb(212, 219, 144);
+    text-align: center;
+}
+
+.parent {
+    display: grid;
+    grid-template: auto 1fr auto / auto 1fr auto;
 }
 
 @media(max-width: 600px)

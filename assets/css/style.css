@@ -3,10 +3,10 @@
 * {
     font-family: "Gabarito";
     font-weight: 400;
-    scroll-behavior: smooth !important;
-    scroll-padding-top: 120px;
     margin: 0;
     padding: 0;
+    scroll-behavior: smooth !important;
+    scroll-padding-top: 120px;
 }
 
 header {
@@ -20,42 +20,55 @@ body {
 }
 
 .card {
-    overflow: hidden;
     box-shadow: 0px 2px 20px rgba(0,0,0,0.1);
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    cursor: pointer;
-    transition: transfom 200ms ease-in;
-    max-width: 12rem;
     margin: 0.625rem;
+    max-width: 12rem;
+    overflow: hidden;
+    transition: transfom 200ms ease-in;
 }
 
 .cardimage {
     height: 12rem;
-    width: 100%;
     object-fit: cover;
+    width: 100%;
 }
 
 .cardtitle {
-    padding: 1rem;
-}
-
-.carddescription {
+    margin: 0.1rem;
     padding: 0 1rem;
 }
 
+.carddescription {
+    margin: 0.1rem;
+    font-weight: 100;
+    padding: 0 1rem;
+}
+
+.cardbody {
+    flex-grow: 1;
+}
+
 .cardbutton {
-    margin: 1rem;
-    padding: 1rem;
+    background: transparent;
+    border: 0.125rem solid;
     font-family: inherit;
     font-weight: bold;
     font-size: 1rem;
-    border: 2px solid;
-    background: transparent;
+    margin: 1rem;
+    padding: 1rem;
     transition:
         background 200ms ease-in,
         color 200ms ease-in;
+    width: 80%;
+}
+
+.cardprice {
+    padding: 0 1rem;
+    font-size: 2rem;
 }
 
 .card:hover {
@@ -65,6 +78,10 @@ body {
 .cardbutton:hover {
     background: green;
     color: white;
+}
+
+.container {
+    display:flex;
 }
 
 .carousel {

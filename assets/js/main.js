@@ -1,10 +1,10 @@
-/*const fs = require('fs');
-const jsonData = fs.readFileSync('plants.json'); */
+//const fs = require('fs');
+//const jsonData = fs.readFileSync('plants.json');
 //const plantData = JSON.parse(products);
 
 const products = [
     { "name": "Rose", "description": "A beautiful and fragrant flowering plant", "price": "9.99", "image": "https://example.com/rose.jpg"},
-    { "name": "Fern", "description": "A leafy green plant that thrives in shade", "price": "6.99", "image": "https://example.com/fern.jpg"},
+    { "name": "Fern", "description": "A leafy green plant that thrives in shade", "price": "6.99", "image": "https://example.com/fern.jpg"}
 ]
 
 const container = document.getElementById('container');
@@ -27,15 +27,23 @@ function createCard(plant) {
     plantElement.classList.add('cardbody');
 
     plantElement.innerHTML = `
-        <img src="images/hibiscus.avif" alt="" class="cardimage" width="150px">
-        <h2 class="cardtitle">${plant.name}</h2>
-        <p class="carddescription">${plant.description}</p>
-        <p class="cardprice">$${plant.price}</p>
-        <button class="cardbutton">Add to Cart</button>
+    <div class="card">
+        <div class="cardbody">
+            <img src="images/hibiscus.avif" alt="" class="cardimage" width="150px">
+                <h2 id="itemName" class="cardtitle">${plant.name}</h2>
+                <p id="itemDesc" class="carddescription">${plant.description}</p>
+                <p id="itemPrice" class="cardprice">${plant.price}</p>
+        </div>
+        <button onclick="addToCart()" class="cardbutton">Add to cart</button>
+    </div>
     `;
-    
+
     cardElement.appendChild(plantElement);
     return cardElement;
+}
+
+function addToCart(product) {
+    alert(product);
 }
 
 function displayCards() {

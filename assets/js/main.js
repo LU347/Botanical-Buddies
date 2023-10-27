@@ -1,27 +1,25 @@
-//const fs = require('fs');  //script breaks if i use this :/
-//const jsonData = fs.readFileSync('plants.json');
-//const plantData = JSON.parse(products);
-
-//temp until i fix ^^
-const products = [
-    { "name": "Rose", "description": "A beautiful and fragrant flowering plant", "price": "9.99", "image": "images/default.png"},
-    { "name": "Fern", "description": "A leafy green plant that thrives in shade", "price": "6.99", "image": "images/default.png"},
-    { "name": "Lavender", "description": "A purple flowering plant known for its soothing scent", "price": "7.99", "image": "images/default.png"},
-]
 const container = document.getElementById('container');
 const plantObjects = [];
-
 const productsInCart = [];      //for the fakeCart
 
-products.forEach(Plant => {
-    const plantObject = {
-        name: Plant.name,
-        description: Plant.description,
-        price: Plant.price,
-        image: Plant.image
-    };
-    plantObjects.push(plantObject);
-});
+fetch('assets/data/plants.json')
+    .then(response => response.json())
+    .then(data => {
+        parseItems(data);
+    })
+
+function parseItems(data) {
+    data.forEach(item => {
+        const plantObject = {
+            name: item.name,
+            description: item.description,
+            price: item.price,
+            image: item.image
+        }
+        plantObjects.push(plantObject);
+    });
+    displayCards();
+}
 
 function createCard(plant) {
     const cardElement = document.createElement('div');
@@ -49,6 +47,13 @@ function createCard(plant) {
     return cardElement;
 }
 
+function displayCards() {
+    plantObjects.forEach(plant => {
+        const cardElement = createCard(plant);
+        container.appendChild(cardElement);
+    });
+}
+
 function addToCart(product) {
     var fakeCart = document.getElementById('fakeCart'); //temp
     var msgElement = document.createElement('div');
@@ -60,15 +65,6 @@ function addToCart(product) {
     console.log(productsInCart);
 }
 
-function displayCards() {
-    plantObjects.forEach(plant => {
-        console.log(plant);
-        const cardElement = createCard(plant);
-        container.appendChild(cardElement);
-    });
-}
-
-displayCards();
 
 
 

@@ -3,60 +3,60 @@
     "name": "Rose",
     "description": "A beautiful and fragrant flowering plant",
     "price": "9.99",
-    "image": "https://example.com/rose.jpg"
+    "image": "/images/default.png"
   },
   {
     "name": "Fern",
     "description": "A leafy green plant that thrives in shade",
     "price": "6.99",
-    "image": "https://example.com/fern.jpg"
+    "image": "/images/default.png"
   },
   {
     "name": "Cactus",
     "description": "A spiky desert plant that requires minimal water",
     "price": "4.99",
-    "image": "https://example.com/cactus.jpg"
+    "image": "/images/default.png"
   },
   {
     "name": "Lavender",
     "description": "A purple flowering plant known for its soothing scent",
     "price": "7.99",
-    "image": "https://example.com/lavender.jpg"
+    "image": "/images/default.png"
   },
   {
     "name": "Succulent",
     "description": "A small, fleshy plant that stores water in its leaves",
     "price": "3.99",
-    "image": "https://example.com/succulent.jpg"
+    "image": "/images/default.png"
   },
   {
     "name": "Orchid",
     "description": "An exotic and delicate flowering plant",
     "price": "12.99",
-    "image": "https://example.com/orchid.jpg"
+    "image": "/images/default.png"
   },
   {
     "name": "Bonsai Tree",
     "description": "A miniature tree grown in a container",
     "price": "19.99",
-    "image": "https://example.com/bonsai.jpg"
+    "image": "/images/default.png"
   },
   {
     "name": "Tulip",
     "description": "A colorful spring flower that blooms in various colors",
     "price": "5.99",
-    "image": "https://example.com/tulip.jpg"
+    "image": "/images/default.png"
   },
   {
     "name": "Ficus",
     "description": "A popular indoor tree with glossy leaves",
     "price": "14.99",
-    "image": "https://example.com/ficus.jpg"
+    "image": "/images/default.png"
   },
   {
     "name": "Sunflower",
     "description": "A tall, bright yellow flower that follows the sun",
     "price": "8.99",
-    "image": "https://example.com/sunflower.jpg"
+    "image": "/images/default.png"
   }
 ]

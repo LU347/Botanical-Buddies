@@ -34,7 +34,7 @@ function createCard(plant) {
             <img src="${plant.image}" alt="" class="cardimage" width="150px">
                 <h2 id="itemName" class="cardtitle">${plant.name}</h2>
                 <p id="itemDesc" class="carddescription">${plant.description}</p>
-                <p id="itemPrice" class="cardprice">${plant.price}</p>
+                <p id="itemPrice" class="cardprice">$${plant.price}</p>
         </div>
         <button class="cardbutton">Add to cart</button>
     </div>

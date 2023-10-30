@@ -2,6 +2,8 @@
     <head>
         <title>New Password</title>
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="accountcreate.js"></script>
     </head>
     <body>
         <div class="accountstyle">
@@ -9,15 +11,15 @@
                 <form method="get">
                     <tr>
                         <td><label>New Password<br />
-                        <input type="text" name="newpass"/></label></td>
+                        <input type="password" name="newpass"/></label></td>
                     </tr>
                     <tr>
                         <td><label>Confirm New Password <br />
-                        <input type="text" name="confirmnewpass"/></label></td>
+                        <input type="password" name="confirmnewpass"/></label></td>
                     </tr>
                     <tr>
                         <td>
-                        <input type="submit" name="signin" value="Confirm"/></td>
+                        <input type="submit" name="signin" value="Confirm" onclick="getUserData(2)"/></td>
                     </tr>
                 </form>
             </table>

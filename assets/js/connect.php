@@ -12,7 +12,11 @@ if (!$db_conn) {
 }
 else
 {
-  echo 'Login Successful';
+    header("Location: index.html");
+    // possible JS script method if Header doesn't work
+    //<script type="text/javascript"> 
+    //window.location.href="Index.html" 
+    //</script> 
 }
 
 

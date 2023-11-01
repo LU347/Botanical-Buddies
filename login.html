@@ -6,7 +6,7 @@
     <body>
         <div class="accountstyle">
             <table>
-                <form method="get">
+                <form id="login-form">
                     <tr>
                         <td><label>Email <br />
                         <input type="text" name="signinemail"/></label></td>
@@ -17,7 +17,7 @@
                     </tr>
                     <tr>
                         <td>
-                        <input type="submit" name="signin" value="Sign In"/></td>
+                        <input type="submit" name="signin" value="Sign In" onclick="getDataFromForm()"/></td>
                     </tr>
                 </form>
                 <tr>

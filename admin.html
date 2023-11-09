@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title>Administrator</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="assets/js/admin.js"></script>
+    </head>
+    <body>
+        <div class="alterproducts">
+            <table>
+                <tr>
+                    <td><label>Title<br/>
+                    <input type="text" name="title"/></label></td>
+                </tr>
+                <tr>
+                    <td><label>Price<br/>
+                    <input type="number" name="price" min="0"/></label></td>
+                </tr>
+                <tr>
+                    <td><label>Quantity<br/>
+                    <input type="number" name="quantity" min="0"/></label></td>
+                </tr>
+                <tr>
+                    <td><label>Description <br/>
+                    <textarea name="description"></textarea> </td>
+                </tr>
+                <tr>
+                    <td><label>Picture<br/>
+                    <input type="file" name="pic"/></label></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" name="alter" /></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="discounts">
+            <input type="text" name="code"/>
+            <input type="submit" name="discountcreate" />
+        </div>
+
+        <div class="modify">
+            <table>
+                <tr>
+                    <td><label>Name <br/>
+                    <input type="text" name="name"/></label></td>
+                </tr>
+                <tr>
+                    <td><label>Email<br/>
+                    <input type="text" name="email"/></label></td>
+                </tr>
+                <tr>
+                    <td><label>Password<br/>
+                    <input type="text" name="password"/></label></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" name="modify" /></td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>

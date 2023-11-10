@@ -3,7 +3,7 @@
       "name": "Rose",
       "description": "A classic flower known for its beauty and fragrance",
       "price": "10.99",
-      "image": "https://example.com/rose.jpg"
+      "image": "/images/plants/rose.jpg"
     },
     {
       "name": "Tulip",

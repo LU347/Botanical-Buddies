@@ -3,7 +3,7 @@
     "name": "Rose",
     "description": "A beautiful and fragrant flowering plant",
     "price": "9.99",
-    "image": "/images/default.png"
+    "image": "/images/plants/rose.jpg"
   },
   {
     "name": "Fern",
@@ -21,7 +21,7 @@
     "name": "Lavender",
     "description": "A purple flowering plant known for its soothing scent",
     "price": "7.99",
-    "image": "/images/default.png"
+    "image": "/images/plants/lavendershrub.jpg"
   },
   {
     "name": "Succulent",

@@ -67,6 +67,7 @@ body {
     height: 8rem;
     object-fit: cover;
     width: 100%;
+    image-resolution: 300dpi;
 }
 
 .cardtitle {

@@ -3,19 +3,23 @@ const plantObjects = [];
 const productsInCart = [];      //for the fakeCart
 const loginForm = document.getElementById("login-form");
 
-fetch('assets/data/plants.json')
+fetch('assets/php/plantData.php')
     .then(response => response.json())
     .then(data => {
         parseItems(data);
     })
-
+    .catch(error => console.error('Error:', error));
+ 
 function parseItems(data) {
     data.forEach(item => {
         const plantObject = {
             name: item.name,
-            description: item.description,
+            type: item.type,
+            description: item.desc,
+            image: item.imgURL,
             price: item.price,
-            image: item.image
+            quantity: item.quantity,
+            quantityAvailable: item.quantityAvailable
         }
         plantObjects.push(plantObject);
     });
@@ -32,7 +36,7 @@ function createCard(plant) {
     plantElement.innerHTML = `
     <div class="card">
         <div class="cardbody">
-            <img src="${plant.image}" alt="" class="cardimage" width="150px">
+            <img src='${plant.image}' alt="" class="cardimage" width="150px">
                 <h2 id="itemName" class="cardtitle">${plant.name}</h2>
                 <p id="itemDesc" class="carddescription">${plant.description}</p>
                 <p id="itemPrice" class="cardprice">$${plant.price}</p>
@@ -82,7 +86,6 @@ function runAjax(user, pass) {
     xhttp.open("GET", `./connect.php?fname=${user}&lname=${pass}`, true);
     xhttp.send();
 }
-
 
 
 

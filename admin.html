@@ -3,10 +3,17 @@
         <title>Administrator</title>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="assets/js/admin.js"></script>
+        <link rel="stylesheet" href="assets/css/admin.css">
     </head>
     <body>
-        <div class="alterproducts">
+        <header>
+            <h1>Admin Controls</h1>
+            <button id="back">Logout</button>
+        </header>
+        <div class="right">
+        <div class="alter">
             <table>
+                <th>Add or Alter a Product</th>
                 <tr>
                     <td><label>Title<br/>
                     <input type="text" name="title"/></label></td>
@@ -28,21 +35,28 @@
                     <input type="file" name="pic"/></label></td>
                 </tr>
                 <tr>
-                    <td><input type="submit" name="alter" /></td>
+                    <td><input type="submit" name="alter" value="Modify/Create Product" onclick="alterProductLine()"/></td>
                 </tr>
             </table>
         </div>
 
-        <div class="discounts">
-            <input type="text" name="code"/>
-            <input type="submit" name="discountcreate" />
+        <div class="orders">
+            <a href="orderhistory.html"> <button>Completed Orders History</button></a>
+            <a href="currentorders.html"> <button>Current Orders</button></a>
         </div>
-
+        </div>
+        
+        <div class="left">
         <div class="modify">
             <table>
+                <th>Modify an Account</th>
                 <tr>
-                    <td><label>Name <br/>
-                    <input type="text" name="name"/></label></td>
+                    <td><label>First Name<br/>
+                    <input type="text" name="fname"/></label></td>
+                </tr>
+                <tr>
+                    <td><label>Last Name<br/>
+                    <input type="text" name="lname"/></label></td>
                 </tr>
                 <tr>
                     <td><label>Email<br/>
@@ -53,9 +67,19 @@
                     <input type="text" name="password"/></label></td>
                 </tr>
                 <tr>
-                    <td><input type="submit" name="modify" /></td>
+                    <td><input type="submit" name="modify" value="Alter Account"/></td>
                 </tr>
             </table>
         </div>
+
+       
+
+        <div class="discounts">
+            <p>Create a Discount Code</p>
+            <input type="text" name="code"/>
+            <input type="submit" name="discountcreate" />
+        </div>
+        </div>
+
     </body>
 </html>

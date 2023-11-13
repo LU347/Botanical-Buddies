@@ -59,17 +59,6 @@ function displayCards() {
     });
 }
 
-function addToCart(product) {
-    var fakeCart = document.getElementById('fakeCart'); //temp
-    var msgElement = document.createElement('div');
-    
-    msgElement.textContent = product.name + "," + product.description + "," + product.price;
-    fakeCart.appendChild(msgElement);
-
-    productsInCart.push(product);
-    console.log(productsInCart);
-}
-
 function getDataFromForm() {
     var user = loginForm.user.value;
     var pass = loginForm.pass.value; // Change 'second' to 'pass'

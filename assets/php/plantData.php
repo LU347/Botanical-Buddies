@@ -13,8 +13,13 @@ if (!$con) {
     die("Connection failed!" . mysqli_connect_error());
 }
 
-$sql = "SELECT * FROM `plants` ORDER BY `plant_name` ASC";
+//$sql = "SELECT * FROM `plants` ORDER BY `plant_name` ASC";    query for all plants
+$sql = "SELECT * FROM `plants` WHERE `plant_type` = 'Flower'";  //flowers
+//$sql = "SELECT * FROM `plants` WHERE `plant_type` = 'Tree'";
+//$sql = "SELECT * FROM `plants` WHERE `plant_type` = 'Shrub'";
 $result = mysqli_query($con, $sql);
+
+if (isset($_POST))
 
 if (mysqli_num_rows($result) > 0) {
     $data = array();

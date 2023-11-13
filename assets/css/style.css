@@ -192,30 +192,6 @@ nav a {
     background-repeat: no-repeat;
 }
 
-.sidebar {
-    align-items: end;
-    background-color: rgb(182, 199, 186);
-    display: none;
-    flex-direction: column;
-    height: 100%;
-    justify-content: flex-end;
-    margin: auto;
-    position: fixed;
-    right: 1;
-    top: 0;
-    width: 250px;
-    z-index: 0;
-}
-
-.sidebar li {
-    
-    width: 100%;
-}
-
-.sidebar a {
-    width: 100%;
-}
-
 .menuButton {
     display: none;
 }

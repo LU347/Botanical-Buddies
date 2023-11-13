@@ -13,14 +13,24 @@ if (!$con) {
     die("Connection failed!" . mysqli_connect_error());
 }
 
-//$sql = "SELECT * FROM `plants` ORDER BY `plant_name` ASC";    query for all plants
-$sql = "SELECT * FROM `plants` WHERE `plant_type` = 'Flower'";  //flowers
-//$sql = "SELECT * FROM `plants` WHERE `plant_type` = 'Tree'";
-//$sql = "SELECT * FROM `plants` WHERE `plant_type` = 'Shrub'";
+switch(true) {
+    case isset($_POST["All"]):
+        $sql = "SELECT * FROM `plants` ORDER BY `plant_name` ASC";
+        break;
+    case isset($_POST["Flower"]):
+        $sql = "SELECT * FROM `plants` WHERE `plant_type` = 'Flower' ORDER BY `plant_price` ASC";
+        break;
+    case isset($_POST["Tree"]):
+        $sql = "SELECT * FROM `plants` WHERE `plant_type` = 'Tree' ORDER BY `plant_price` ASC";
+        break;
+    case isset($_POST["Shrub"]):
+        $sql = "SELECT * FROM `plants` WHERE `plant_type` = 'Shrub' ORDER BY `plant_price` ASC";
+        break;
+}
+
+$sql = "SELECT * FROM `plants` WHERE `plant_type` = 'Tree' ORDER BY `plant_price` ASC";
 $result = mysqli_query($con, $sql);
-
-if (isset($_POST))
-
+                
 if (mysqli_num_rows($result) > 0) {
     $data = array();
 

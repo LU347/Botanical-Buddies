@@ -1,9 +1,16 @@
 <?php
 // storing database details in variables.
+
 $hostname = "localhost";
 $username = "lucile";
 $password = "h*/NrW[/Lx.JFb4M";
 $dbname = "botanical_buddies";
+
+/*
+$hostname = "partygoer.mysql.database.azure.com";
+$username = "matthewmartinez";
+$password = "1qaz2wsx!QAZ@WSX";
+$dbname = "herewego";*/
 
 // creating connection to the database
 $con = mysqli_connect($hostname, $username, $password, $dbname);
@@ -13,22 +20,24 @@ if (!$con) {
     die("Connection failed!" . mysqli_connect_error());
 }
 
-switch(true) {
-    case isset($_POST["All"]):
-        $sql = "SELECT * FROM `plants` ORDER BY `plant_name` ASC";
-        break;
-    case isset($_POST["Flower"]):
-        $sql = "SELECT * FROM `plants` WHERE `plant_type` = 'Flower' ORDER BY `plant_price` ASC";
-        break;
-    case isset($_POST["Tree"]):
-        $sql = "SELECT * FROM `plants` WHERE `plant_type` = 'Tree' ORDER BY `plant_price` ASC";
-        break;
-    case isset($_POST["Shrub"]):
-        $sql = "SELECT * FROM `plants` WHERE `plant_type` = 'Shrub' ORDER BY `plant_price` ASC";
-        break;
+if (isset($_POST['itemName'])) {
+    $itemName = $_POST['itemName'];
+    switch($itemName) {
+        case 'All':
+            $sql = "SELECT * FROM `plants` ORDER BY `plant_name`";
+            break;
+        case 'Flower':
+            $sql = "SELECT * FROM `plants` WHERE `plant_type` = 'Flower'";
+            break;
+        case 'Tree':
+            $sql = "SELECT * FROM `plants` WHERE `plant_type` = 'Tree'";
+            break;
+        case 'Shrub':
+            $sql = "SELECT * FROM `plants` WHERE `plant_type` = 'Shrub'";
+            break;
+    }
 }
 
-$sql = "SELECT * FROM `plants` WHERE `plant_type` = 'Tree' ORDER BY `plant_price` ASC";
 $result = mysqli_query($con, $sql);
                 
 if (mysqli_num_rows($result) > 0) {

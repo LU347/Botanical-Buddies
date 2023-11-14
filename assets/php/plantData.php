@@ -24,6 +24,8 @@ if (isset($_POST['itemName'])) {
     $itemName = $_POST['itemName'];
     $result = '';
     switch($itemName) {
+        case 'Home':
+            $sql = "SELECT * FROM `plants` LIMIT 10";
         case 'All':
             $sql = "SELECT * FROM `plants` ORDER BY `plant_name`";
             break;

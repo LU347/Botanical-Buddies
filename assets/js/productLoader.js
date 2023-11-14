@@ -1,8 +1,10 @@
 const container = document.getElementById('container');
 var plantObjects = [];
+var currentPage = 'Home'; //home is starting page
 
 document.addEventListener('DOMContentLoaded', function() {
     initializeEventListeners();
+    displayProducts();
 });
 
 function initializeEventListeners() {
@@ -82,4 +84,18 @@ function displayCards() {
         const cardElement = createCard(plant);
         container.appendChild(cardElement);
     });
+}
+
+function displayProducts() {
+    //TODO: update html depending on the current "page";
+    switch(currentPage) {
+        case 'Home':
+            container.innerHTML = `
+            <div class="category">
+                <h1>New Arrivals<h1>
+                <div class="carousel"> [plant content] </div>
+            </div>
+            `;
+        break;
+    }
 }

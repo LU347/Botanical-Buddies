@@ -1,5 +1,5 @@
 const container = document.getElementById('container');
-const plantObjects = [];
+var plantObjects = [];
 
 document.addEventListener('DOMContentLoaded', function() {
     initializeEventListeners();
@@ -25,6 +25,8 @@ function updateProductPage(itemType) {
     })
     .then(response => response.json())
     .then(data => {
+        plantObjects = [];
+        console.log(plantObjects);
         container.innerHTML = '';
         parseItems(data);
     })

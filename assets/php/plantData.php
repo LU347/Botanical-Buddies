@@ -22,6 +22,7 @@ if (!$con) {
 
 if (isset($_POST['itemName'])) {
     $itemName = $_POST['itemName'];
+    $result = '';
     switch($itemName) {
         case 'All':
             $sql = "SELECT * FROM `plants` ORDER BY `plant_name`";
@@ -36,9 +37,8 @@ if (isset($_POST['itemName'])) {
             $sql = "SELECT * FROM `plants` WHERE `plant_type` = 'Shrub'";
             break;
     }
+    $result = mysqli_query($con, $sql);
 }
-
-$result = mysqli_query($con, $sql);
                 
 if (mysqli_num_rows($result) > 0) {
     $data = array();

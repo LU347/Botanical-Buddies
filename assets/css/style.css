@@ -156,6 +156,7 @@ nav li {
     height: 100%;
     width: 100%;
     padding: 0 5px;
+    cursor: pointer;
 }
 
 nav a {

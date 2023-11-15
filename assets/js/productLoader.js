@@ -68,21 +68,42 @@ function createCard(plant) {
                 <p id="itemDesc" class="carddescription">${plant.description}</p>
                 <p id="itemPrice" class="cardprice">$${plant.price}</p>
         </div>
-        <form action="assets/php/plantData.php" method="post">
-            <button name="addToCart" value="${plant.name}" class="cardbutton">Add to cart</button>
+        <form action="assets/php/plantData.php" method="post" class="addToCartForm">
+            <input type="hidden" name="addToCart" value="${plant.name}">
+            <button type="submit" class="cardbutton">Add to cart</button>
         </form>
     </div>
     `;
 
-    const addToCartButton = plantElement.querySelector('.cardbutton');
-    addToCartButton.addEventListener('click', () => addToCart(plant));
+    const addToCartForm = plantElement.querySelector('.addToCartForm');
+    addToCartForm.addEventListener('submit', function(event) {
+        console.log('atc button triggered');
+        event.preventDefault(); 
+        addToCart(plant.name);
+        
+    });
 
     cardElement.appendChild(plantElement);
     return cardElement;
 }
 
-function addToCart(plant) {
-    console.log(plant.name); 
+function addToCart(plantName) {
+    fetch('assets/php/plantData.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'addToCart=' + encodeURIComponent(plantName),
+    })
+    .then(response => response.text())
+    .then(data => {
+        console.log('Response from server:', data);
+    })
+    .catch(error => {
+        console.error('error', error);
+    });
+
+    console.log('added to cart', plantName); 
 }
 
 function displayCards() {
@@ -104,14 +125,8 @@ function displayProducts() {
             `;
         break;
         case 'All':
-            fetchProducts(currentPage);
-            break;
         case 'Flower':
-            fetchProducts(currentPage);
-            break;
         case 'Tree':
-            fetchProducts(currentPage);
-            break;
         case 'Shrub':
             fetchProducts(currentPage);
             break;

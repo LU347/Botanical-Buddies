@@ -20,12 +20,24 @@ if (!$con) {
     die("Connection failed!" . mysqli_connect_error());
 }
 
+if (isset($_POST['addToCart'])) {
+    $plantName = $_POST['addToCart'];
+    $sql = "UPDATE `plants` SET `plant_quantity` = `plant_quantity` + 1, `plant_quantity_available` = `plant_quantity_available` - 1 WHERE `plant_name` = '$plantName'";
+    $result = mysqli_query($con, $sql);
+
+    if (!$result) {
+        echo "error handling addtocart";
+    }
+    echo "Successfully added to cart!";
+} 
+
 if (isset($_POST['itemName'])) {
     $itemName = $_POST['itemName'];
     $result = '';
     switch($itemName) {
         case 'Home':
-            $sql = "SELECT * FROM `plants` LIMIT 10";
+            $sql = "SELECT * FROM `plants` LIMIT 10"; //temporary
+            break;
         case 'All':
             $sql = "SELECT * FROM `plants` ORDER BY `plant_name`";
             break;
@@ -42,12 +54,6 @@ if (isset($_POST['itemName'])) {
     $result = mysqli_query($con, $sql);
 }
 
-if (isset($_POST['addToCart'])) {
-    echo $_POST['addToCart'] . "quantity incremented";
-    $plantName = $_POST['addToCart'];
-    $sql = "UPDATE `plants` SET `plant_quantity` = `plant_quantity` + 1, `plant_quantity_available` = `plant_quantity_available` - 1 WHERE `plant_name` = '$plantName'";
-    $result = mysqli_query($con, $sql);
-}
                 
 if (mysqli_num_rows($result) > 0) {
     $data = array();

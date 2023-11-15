@@ -119,9 +119,8 @@ function displayProducts() {
     switch(currentPage) {
         case 'Home':
             container.innerHTML = `
-            <div class="category">
-                <h1>New Arrivals<h1>
-                <div class="carousel"> [plant content] </div>
+            <div>
+                <div class="category"><h1>BEST SELLERS</h1>
             </div>
             `;
         break;

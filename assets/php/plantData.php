@@ -22,7 +22,7 @@ if (!$con) {
 
 if (isset($_POST['addToCart'])) {
     $plantName = $_POST['addToCart'];
-    $sql = "UPDATE `plants` SET `plant_quantity` = `plant_quantity` + 1, `plant_quantity_available` = `plant_quantity_available` - 1 WHERE `plant_name` = '$plantName'";
+    $sql = "UPDATE `plants` SET `plant_quantity` = `plant_quantity` + 1 WHERE `plant_name` = '$plantName'";
     $result = mysqli_query($con, $sql);
 
     if (!$result) {

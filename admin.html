@@ -5,80 +5,25 @@
         <script src="assets/js/admin.js"></script>
         <link rel="stylesheet" href="assets/css/admin.css">
     </head>
+   
     <body>
         <header>
-            <h1>Admin Controls</h1>
-            <button id="back">Logout</button>
+            <h1>Administrative Controls</h1>
+            <nav>
+                <a href="admin.html">Admin Home Page</a>
+                <a href="deleteAccount.html">Delete Account</a>
+                <a href="deleteInventory.php">Delete Inventory Items</a>
+                <a href="logout.php">Logout</a>
+            </nav>
         </header>
-        <div class="right">
-        <div class="alter">
-            <table>
-                <th>Add or Alter a Product</th>
-                <tr>
-                    <td><label>Title<br/>
-                    <input type="text" name="title"/></label></td>
-                </tr>
-                <tr>
-                    <td><label>Price<br/>
-                    <input type="number" name="price" min="0"/></label></td>
-                </tr>
-                <tr>
-                    <td><label>Quantity<br/>
-                    <input type="number" name="quantity" min="0"/></label></td>
-                </tr>
-                <tr>
-                    <td><label>Description <br/>
-                    <textarea name="description"></textarea> </td>
-                </tr>
-                <tr>
-                    <td><label>Picture<br/>
-                    <input type="file" name="pic"/></label></td>
-                </tr>
-                <tr>
-                    <td><input type="submit" name="alter" value="Modify/Create Product" onclick="alterProductLine()"/></td>
-                </tr>
-            </table>
-        </div>
 
-        <div class="orders">
-            <a href="orderhistory.html"> <button>Completed Orders History</button></a>
-            <a href="currentorders.html"> <button>Current Orders</button></a>
-        </div>
-        </div>
-        
-        <div class="left">
-        <div class="modify">
-            <table>
-                <th>Modify an Account</th>
-                <tr>
-                    <td><label>First Name<br/>
-                    <input type="text" name="fname"/></label></td>
-                </tr>
-                <tr>
-                    <td><label>Last Name<br/>
-                    <input type="text" name="lname"/></label></td>
-                </tr>
-                <tr>
-                    <td><label>Email<br/>
-                    <input type="text" name="email"/></label></td>
-                </tr>
-                <tr>
-                    <td><label>Password<br/>
-                    <input type="text" name="password"/></label></td>
-                </tr>
-                <tr>
-                    <td><input type="submit" name="modify" value="Alter Account"/></td>
-                </tr>
-            </table>
-        </div>
-
-       
-
-        <div class="discounts">
-            <p>Create a Discount Code</p>
-            <input type="text" name="code"/>
-            <input type="submit" name="discountcreate" />
-        </div>
+        <div class="container">
+          <p>Welcome to the Admin Side where you can do any of the following: </p>
+          <ul>
+            <li>Delete Accounts</li>
+            <li>Create Accounts</li>
+            <li>Add/Delete Inventory Items</li>
+          </ul>
         </div>
 
     </body>

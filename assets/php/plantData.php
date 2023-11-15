@@ -45,7 +45,7 @@ if (isset($_POST['itemName'])) {
 if (isset($_POST['addToCart'])) {
     echo $_POST['addToCart'] . "quantity incremented";
     $plantName = $_POST['addToCart'];
-    $sql = "UPDATE `plants` SET `plant_quantity` = plant_quantity + 1 WHERE `plant_name` = '$plantName'";
+    $sql = "UPDATE `plants` SET `plant_quantity` = `plant_quantity` + 1, `plant_quantity_available` = `plant_quantity_available` - 1 WHERE `plant_name` = '$plantName'";
     $result = mysqli_query($con, $sql);
 }
                 

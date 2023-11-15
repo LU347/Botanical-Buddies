@@ -21,7 +21,7 @@ if (!$result) {
 
 if (mysqli_num_rows($result) > 0) {
     // Store data in session variables
-    $_SESSION['user_id'] = 123; // You can replace 123 with the actual user ID
+    $_SESSION['user_id'] = $USERNAME; // You can replace 123 with the actual user ID
     if($USERNAME=='ADMIN'){
         $_SESSION['user_id'] = 222; 
     }

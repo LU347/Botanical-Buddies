@@ -41,6 +41,13 @@ if (isset($_POST['itemName'])) {
     }
     $result = mysqli_query($con, $sql);
 }
+
+if (isset($_POST['addToCart'])) {
+    echo $_POST['addToCart'] . "quantity incremented";
+    $plantName = $_POST['addToCart'];
+    $sql = "UPDATE `plants` SET `plant_quantity` = plant_quantity + 1 WHERE `plant_name` = '$plantName'";
+    $result = mysqli_query($con, $sql);
+}
                 
 if (mysqli_num_rows($result) > 0) {
     $data = array();

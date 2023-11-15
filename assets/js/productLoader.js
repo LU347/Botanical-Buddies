@@ -4,7 +4,7 @@ var currentPage = 'Home'; //home is starting page
 
 document.addEventListener('DOMContentLoaded', function() {
     initializeEventListeners();
-    displayProducts();
+    displayProducts(currentPage);
 });
 
 function initializeEventListeners() {
@@ -12,12 +12,13 @@ function initializeEventListeners() {
     navbarItems.forEach(function(item) {
         item.addEventListener('click', function() {
             var itemType = this.dataset.name;
-            updateProductPage(itemType);
+            currentPage = itemType;
+            displayProducts();
         });
     });
 }
 
-function updateProductPage(itemType) {
+function fetchProducts(itemType) {
     fetch('assets/php/plantData.php', {
         method: 'POST',
         headers: {
@@ -28,8 +29,7 @@ function updateProductPage(itemType) {
     .then(response => response.json())
     .then(data => {
         plantObjects = [];
-        console.log(plantObjects);
-        container.innerHTML = '';
+        container.innerHTML = '';       //container and plantObjects[] gets emptied
         parseItems(data);
     })
     .catch(error => {
@@ -37,7 +37,7 @@ function updateProductPage(itemType) {
     })
 }
 
-function parseItems(data) {
+function parseItems(data) {                 //parses json items into plant objects
     data.forEach(item => {
         const plantObject = {
             name: item.name,
@@ -50,7 +50,7 @@ function parseItems(data) {
         }
         plantObjects.push(plantObject);
     });
-    displayCards();
+    displayCards();                         //creates and displays the product cards
 }
 
 function createCard(plant) {
@@ -68,7 +68,9 @@ function createCard(plant) {
                 <p id="itemDesc" class="carddescription">${plant.description}</p>
                 <p id="itemPrice" class="cardprice">$${plant.price}</p>
         </div>
-        <button class="cardbutton">Add to cart</button>
+        <form action="assets/php/plantData.php" method="post">
+            <button name="addToCart" value="${plant.name}" class="cardbutton">Add to cart</button>
+        </form>
     </div>
     `;
 
@@ -77,6 +79,10 @@ function createCard(plant) {
 
     cardElement.appendChild(plantElement);
     return cardElement;
+}
+
+function addToCart(plant) {
+    console.log(plant.name); 
 }
 
 function displayCards() {
@@ -97,5 +103,17 @@ function displayProducts() {
             </div>
             `;
         break;
+        case 'All':
+            fetchProducts(currentPage);
+            break;
+        case 'Flower':
+            fetchProducts(currentPage);
+            break;
+        case 'Tree':
+            fetchProducts(currentPage);
+            break;
+        case 'Shrub':
+            fetchProducts(currentPage);
+            break;
     }
 }

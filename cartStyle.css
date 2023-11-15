@@ -1,119 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Gabarito&display=swap');
 
-* {
-    font-family: "Gabarito";
-    font-weight: 400;
-    font-size: 16px;
-    scroll-behavior: smooth !important;
-    scroll-padding-top: 120px;
-    margin: 0;
-    padding: 0;
-}
-
-header {
-    display: flex;
-}
-
-body {
-    color: black;
-    background-color: white;
-    min-height: 100vh;
-}
-
-nav {
-    background-color: white;
-    box-shadow: 5px 5px 5px rgba(0,0,0,0.1);
-    width: 100%;
-}
-
-nav ul {
-    width: 100%;
-    list-style: none;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-nav li {
-    height: 50px;
-    width: 100%;
-    padding: 0 5px;
-}
-
-nav a {
-    height: 100%;
-    padding: 0 30px;
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: black;
-}
-
-nav li:first-child li:nth-child(2){
-    margin-right: auto;
-}
-
-.sidebar {
-    position: fixed;
-    background-color: rgb(182, 199, 186);
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 250px;
-    z-index: 0;
-    display: none;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-}
-
-.sidebar li {
-    width: 100%;
-}
-
-.sidebar a {
-    width: 100%;
-}
-
-.menuButton {
-    display: none;
-}
-
-@media(max-width: 600px)
-{
-    .hideOnMobile {
-        display: none;
-    }
-
-    .menuButton {
-        display: block;
-    }
-}
-
-@media(max-width: 400px)
-{
-    .sidebar {
-        width:100%;
-    }
-}
-
-button {
-    padding: 9px 25px;
-    background-color:rgb(171, 224, 184);
-    border:none;
-    border-radius:50px;
-    transition: all 0.3s ease 0s;
-    cursor: pointer;
-}
-
-/*test*/
-
-
+/*
 html,
 html a {
   -webkit-font-smoothing: antialiased;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
-}
+} 
 
 body {
   background-color: #fff;
@@ -123,11 +14,15 @@ body {
   margin: 0 auto;
 }
 
+
+
 a {
   border: 0 none;
   outline: 0;
   text-decoration: none;
 }
+
+*/
 
 strong {
   font-weight: bold;
@@ -137,12 +32,13 @@ p {
   margin: 0.75rem 0 0;
 }
 
+/*
 h1 {
   font-size: 0.75rem;
   font-weight: normal;
   margin: 0;
   padding: 0;
-}
+} */
 
 input,
 button {
@@ -190,9 +86,9 @@ button,
   display: none;
 }
 
+/*font-size: 0.75rem;*/
 main {
   clear: both;
-  font-size: 0.75rem;
   margin: 0 auto;
   overflow: hidden;
   padding: 1rem 0;
@@ -251,6 +147,7 @@ label {
   margin-top: 1.625rem;
 }
 
+/*
 ul {
   list-style: none;
   margin: 0;
@@ -266,7 +163,7 @@ li {
 li.price:before,
 li.subtotal:before {
   content: '';
-}
+} */
 
 .item {
   width: 55%;

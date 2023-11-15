@@ -1,0 +1,23 @@
+name, type, description, price, image link
+Rose,Flower,A classic flower known for its beauty and fragrance,10.99,https://example.com/rose.jpg
+Tulip,Flower,A popular spring flower with vibrant colors,5.99,https://example.com/tulip.jpg
+Sunflower,Flower,A large flower with a bright yellow color,7.99,https://example.com/sunflower.jpg
+Daisy,Flower,A simple and cheerful flower with white petals,3.99,https://example.com/daisy.jpg
+Lavender,Flower,A fragrant flower often used in aromatherapy,6.99,https://example.com/lavender.jpg
+Carnation,Flower,A traditional flower often used in bouquets,4.99,https://example.com/carnation.jpg
+Orchid,Flower,An exotic flower known for its elegance and beauty,12.99,https://example.com/orchid.jpg
+Hydrangea,Flower,A cluster of small flowers that create a stunning display,9.99,https://example.com/hydrangea.jpg
+Lily,Flower,A graceful flower often associated with purity and rebirth,9.99,https://example.com/lily.jpg
+Peony,Flower,A luxurious flower with large, delicate petals,11.99,https://example.com/peony.jpg
+Basswood,Tree,Can grow as tall at 60 to 80 feet with a round and lush crown made up of heart-shaped leaves,24.99,https://example.com/basswood.jpg
+Elm,Tree,Its tall arching branches create a shady place to escape the hot summer sun,23.99,https://example.com/elm.jpg
+Hackberry,Tree,Commonly used as a street tree because of its ability to withstand drought and urban environments,25.99,https://example.com/hackberry.jpg
+White Pine,Tree,Eastern white pines are impressive to look at and soft to the touch,24.99,https://example.com/whitepine.jpg
+Honey Locust,Tree,Their flowers provide food for pollinators and their leaves turn a beautiful golden shade in the fall,27.99,https://example.com/honeylocust.jpg
+Redbud,Tree,The red buds of this small tree burst open into tiny purple blooms that line the branches,23.99,https://example.com/redbud.jpg
+Boxwood,Shrub,This evergreen may be trimmed into rounded formal forms,15.99,https://example.com/boxwood.jpg
+Blooming Quince,Shrub,Japanese quince may grow up to 6 feet tall and features orange-scarlet blooms,18.99,https://example.com/quince.jpg
+Euonymus,Shrub,They feature shiny green foliage and bright red berries,14.99,https://example.com/euonymus.jpg
+Laurel,Shrub,Develops clusters of pink blossoms and thrives in both full sun and partial shade,14.99,https://example.com/laurel.jpg
+Spirea,Shrub,Found to be useful as screen plantings particularly because of their dense growth and abundant flowering,17.99,https://example.com/spirea.jpg
+Viburnum,Shrub,At maturity, the “popular snowball” grows to be 10 to 12 feet tall,18.99,https://example.com/viburnum.jpg

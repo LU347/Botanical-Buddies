@@ -1,3 +1,7 @@
+<?php
+// Start the session
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +9,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Database Records</title>
+    <script type="text/javascript">
+        function jsFunction(name, y){
+          setCookie(name, y , 10); 
+        }
+        function setCookie(cName, cValue, expDays) {
+    let date = new Date();
+    date.setTime(date.getTime() + (expDays * 24 * 60 * 60 * 1000));
+    const expires = "expires=" + date.toUTCString();
+    document.cookie = cName + "=" + cValue + "; " + expires + "; path=/";
+}
+
+</script>
     <style>
         table{
             width: 70%;
@@ -633,9 +649,9 @@ echo '<script type="text/javascript" src="cartScript.js"></script>';
 
     $subtotal = 0.00;
     $totalitems = 0;
-    //Output Form Entries from the Database
+    
     $sql = 'SELECT plant_name, plant_image_url, plant_quantity, plant_price, plant_type, plant_description FROM plant WHERE plant_quantity >= 1';
-    //fire query
+  
     $statement = $pdo->query($sql);
     $plants = $statement->fetchAll(PDO::FETCH_ASSOC);
     echo'<main>
@@ -683,7 +699,7 @@ echo '<script type="text/javascript" src="cartScript.js"></script>';
                 <button onClick="discount()" class="promo-code-cta">Apply</button>
             </div>
             </div>';
-
+$checkout = "'checkout.php'";
     echo '<aside>
     <div class="summary">
       <div class="summary-total-items"><span class="total-items"></span> '. $totalitems .' Items in your Bag</div>
@@ -704,11 +720,14 @@ echo '<script type="text/javascript" src="cartScript.js"></script>';
         <div class="total-value final-value" id="basket-total">' . $cartTotal .'</div>
       </div>
       <div class="summary-checkout">
-        <button class="checkout-cta">Go to Secure Checkout</button>
+        <button  onclick="window.location.href='.$checkout.';" class="checkout-cta">Go to Secure Checkout</button>
       </div>
     </div>
   </aside>';
     echo '</main>';
+    echo '<script type="text/javascript">jsFunction("price", '. $cartTotal .');</script>';
+    echo '<script type="text/javascript">jsFunction("items", '. $totalitems .');</script>';
+    echo $_COOKIE["price"];
     
 
 ?>

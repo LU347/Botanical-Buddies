@@ -67,6 +67,7 @@ function createCard(plant) {
                 <h2 id="itemName" class="cardtitle">${plant.name}</h2>
                 <p id="itemDesc" class="carddescription">${plant.description}</p>
                 <p id="itemPrice" class="cardprice">$${plant.price}</p>
+                <p id="itemQuantity" class="cardquantityAvail">Quantity Available: ${plant.quantityAvailable}</p>
         </div>
         <form action="assets/php/plantData.php" method="post" class="addToCartForm">
             <input type="hidden" name="addToCart" value="${plant.name}">

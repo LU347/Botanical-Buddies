@@ -145,6 +145,12 @@ body {
     font-family: 'Noto Serif Old Uyghur', serif;
 }
 
+.cardquantityAvail {
+    padding: 0 1rem;
+    font-size: 0.7rem;
+    font-family: 'Noto Serif Old Uyghur', serif;
+}
+
 .card:hover {
     transform:scale(1.02);
 }

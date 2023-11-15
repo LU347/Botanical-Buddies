@@ -32,8 +32,12 @@
     </body>
 </html>
 <?php
+session_start();
 
-echo '<script type="text/javascript" src="cartScript.js"></script>';
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+
+    echo '<script type="text/javascript" src="cartScript.js"></script>';
     $server = "localhost";
     $user = "root";
     $port = 3307;
@@ -48,14 +52,21 @@ echo '<script type="text/javascript" src="cartScript.js"></script>';
     $statement = $pdo->prepare($sql);
     $statement->execute();  
 
-    $sql = "INSERT INTO orderhistory (num_items, order_price, order_date)
-    VALUES  ($_COOKIE[items], $_COOKIE[price], now())";
+    $sql = "INSERT INTO orderhistory (order_username, num_items, order_price, order_date)
+    VALUES  ($user_id, $_COOKIE[items], $_COOKIE[price], now())";
     $statement = $pdo->prepare($sql);
     $statement->execute();
      
 
      $sql = "UPDATE plant SET plant_quantity = 0";
      $statement = $pdo->prepare($sql);
-     $statement->execute();    
-    ?>
+     $statement->execute();
+
+} else {
+    // Handle the case when the user is not logged in
+    echo 'User is not logged in.';
+    header('refresh: 5; url=login.html');
+
+}
+?>
     

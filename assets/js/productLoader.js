@@ -17,6 +17,12 @@ function initializeEventListeners() {
             displayProducts();
         });
     });
+
+    //TODO sent to php
+    var searchBar = document.getElementById('searchBar');
+    searchBar.addEventListener('submit', function() {
+        console.log("temporary");
+    });
 }
 
 function fetchProducts(itemType) {
@@ -30,7 +36,6 @@ function fetchProducts(itemType) {
     .then(response => response.json())
     .then(data => {
         plantObjects = [];
-        //container.innerHTML = '';       //container and plantObjects[] gets emptied
         parseItems(data);
     })
     .catch(error => {
@@ -116,7 +121,6 @@ function displayCards() {
 }
 
 function displayProducts() {
-    //TODO: update html depending on the current "page";
     switch(currentPage) {
         case 'Home':
             category.innerHTML = ` 
@@ -125,6 +129,13 @@ function displayProducts() {
             container.innerHTML = ``;
             fetchProducts(currentPage);
         break;
+        case 'Search':     //TODO:
+            category.innerHTML = `
+                <h1 class="title">$numFound results for $searchquery</h1>
+            `;
+            container.HTML = '';
+            fetchProducts(currentPage);
+            break;
         case 'All':
         case 'Flower':
         case 'Tree':
@@ -132,7 +143,7 @@ function displayProducts() {
             category.innerHTML = `
                 <div class="sortSelect">
                     <label for="sortBy">Sort By:</label>
-                    <select name="sortBy" id="sorting">
+                    <select name="sortBy" id="sortBy">
                         <option value="ASCPrice">Lowest to Highest Price</option>
                         <option value="DESCPrice">Highest to Lowest Price</option>
                         <option value="ASCLetters">Plant Name A-Z</option>

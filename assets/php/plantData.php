@@ -41,7 +41,7 @@ if (isset($_POST['itemName'])) {
     $result = '';
     switch($itemName) {
         case 'Home':
-            $sql = "SELECT * FROM `plant_data` WHERE `plant_quantity_available` < 50 LIMIT 10"; //for best sellers
+            $sql = "SELECT * FROM `plant_data` WHERE `plant_quantity_available` < 50 ORDER BY `plant_quantity_available` ASC"; //for best sellers
             break;
         case 'All':
             $sql = "SELECT * FROM `plant_data` ORDER BY `plant_name`";
@@ -54,6 +54,10 @@ if (isset($_POST['itemName'])) {
             break;
         case 'Shrub':
             $sql = "SELECT * FROM `plant_data` WHERE `plant_type` = 'Shrub'";
+            break;
+        case 'Search':
+            $searchQuery = $_POST['itemName'];
+            $sql = "SELECT * FROM `plant_data` WHERE `plant_name` LIKE '$searchQuery'";
             break;
     }
     $result = mysqli_query($con, $sql);

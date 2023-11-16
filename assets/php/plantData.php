@@ -1,19 +1,24 @@
 <?php
 // storing database details in variables.
 
-$hostname = "localhost";
-$username = "lucile";
-$password = "h*/NrW[/Lx.JFb4M";
-$dbname = "botanical_buddies";
+//$hostname = "localhost";
+//$username = "lucile";
+//$password = "h*/NrW[/Lx.JFb4M";
+//$dbname = "botanical_buddies"; 
+ini_set('display_errors', 1);
 
-/*
-$hostname = "partygoer.mysql.database.azure.com";
-$username = "matthewmartinez";
-$password = "1qaz2wsx!QAZ@WSX";
-$dbname = "herewego";*/
+$db_host = "partygoer.mysql.database.azure.com"; // Change this
+$db_user = "matthewmartinez"; // Change this
+$db_pass = "1qaz2wsx!QAZ@WSX"; // Change this
+$db_name = "herewego"; // Do not change */
+
+/*$connection = mysqli_connect("$db_host", "$db_user", "$db_pass", "$db_name");
+if (!$connection) {
+    die("Error: " . mysqli_connect_error());
+}*/
 
 // creating connection to the database
-$con = mysqli_connect($hostname, $username, $password, $dbname);
+$con = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
 
 // checking if connection is working or not
 if (!$con) {
@@ -22,7 +27,7 @@ if (!$con) {
 
 if (isset($_POST['addToCart'])) {
     $plantName = $_POST['addToCart'];
-    $sql = "UPDATE `plants` SET `plant_quantity` = `plant_quantity` + 1 WHERE `plant_name` = '$plantName'";
+    $sql = "UPDATE `plant_data` SET `plant_quantity` = `plant_quantity` + 1 WHERE `plant_name` = '$plantName'";
     $result = mysqli_query($con, $sql);
 
     if (!$result) {
@@ -36,19 +41,19 @@ if (isset($_POST['itemName'])) {
     $result = '';
     switch($itemName) {
         case 'Home':
-            $sql = "SELECT * FROM `plants` LIMIT 10"; //temporary
+            $sql = "SELECT * FROM `plant_data` LIMIT 10"; //temporary
             break;
         case 'All':
-            $sql = "SELECT * FROM `plants` ORDER BY `plant_name`";
+            $sql = "SELECT * FROM `plant_data` ORDER BY `plant_name`";
             break;
         case 'Flower':
-            $sql = "SELECT * FROM `plants` WHERE `plant_type` = 'Flower'";
+            $sql = "SELECT * FROM `plant_data` WHERE `plant_type` = 'Flower'";
             break;
         case 'Tree':
-            $sql = "SELECT * FROM `plants` WHERE `plant_type` = 'Tree'";
+            $sql = "SELECT * FROM `plant_data` WHERE `plant_type` = 'Tree'";
             break;
         case 'Shrub':
-            $sql = "SELECT * FROM `plants` WHERE `plant_type` = 'Shrub'";
+            $sql = "SELECT * FROM `plant_data` WHERE `plant_type` = 'Shrub'";
             break;
     }
     $result = mysqli_query($con, $sql);

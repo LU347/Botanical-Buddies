@@ -19,7 +19,7 @@ function initializeEventListeners() {
 }
 
 function fetchProducts(itemType) {
-    fetch('assets/php/plantData.php', {
+    fetch('./assets/php/plantData.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -89,7 +89,7 @@ function createCard(plant) {
 }
 
 function addToCart(plantName) {
-    fetch('assets/php/plantData.php', {
+    fetch('./assets/php/plantData.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',

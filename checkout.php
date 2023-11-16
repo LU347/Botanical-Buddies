@@ -38,12 +38,16 @@ if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
 
     echo '<script type="text/javascript" src="cartScript.js"></script>';
+    $db_host="partygoer.mysql.database.azure.com";        
+    $db_user="matthewmartinez";        
+    $db_pass="1qaz2wsx!QAZ@WSX";        
+    $db_name="herewego";  
     $server = "localhost";
     $user = "root";
     $port = 3307;
     $password = "";
     $db = "plants";
-    $pdo = new PDO("mysql:host=$server;port=$port;dbname=$db", $user, $password);
+    $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
     echo $_COOKIE["price"]; 
     echo "   ";
     echo $_COOKIE["items"]; 

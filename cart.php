@@ -639,18 +639,21 @@ echo '<script type="text/javascript" src="cartScript.js"></script>';
 
     //storing database details in variables.
     
-
+    $db_host="partygoer.mysql.database.azure.com";        
+    $db_user="matthewmartinez";        
+    $db_pass="1qaz2wsx!QAZ@WSX";        
+    $db_name="herewego";  
     $server = "localhost";
     $user = "root";
     $port = 3307;
     $password = "";
     $db = "plants";
-    $pdo = new PDO("mysql:host=$server;port=$port;dbname=$db", $user, $password);
+    $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
 
     $subtotal = 0.00;
     $totalitems = 0;
     
-    $sql = 'SELECT plant_name, plant_image_url, plant_quantity, plant_price, plant_type, plant_description FROM plant WHERE plant_quantity >= 1';
+    $sql = 'SELECT plant_name, plant_image_url, plant_quantity, plant_price, plant_type, plant_description FROM plant_data WHERE plant_quantity >= 1';
   
     $statement = $pdo->query($sql);
     $plants = $statement->fetchAll(PDO::FETCH_ASSOC);

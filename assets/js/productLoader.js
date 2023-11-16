@@ -1,4 +1,5 @@
 const container = document.getElementById('container');
+const category = document.getElementById('category');
 var plantObjects = [];
 var currentPage = 'Home'; //home is starting page
 
@@ -29,7 +30,7 @@ function fetchProducts(itemType) {
     .then(response => response.json())
     .then(data => {
         plantObjects = [];
-        container.innerHTML = '';       //container and plantObjects[] gets emptied
+        //container.innerHTML = '';       //container and plantObjects[] gets emptied
         parseItems(data);
     })
     .catch(error => {
@@ -118,16 +119,31 @@ function displayProducts() {
     //TODO: update html depending on the current "page";
     switch(currentPage) {
         case 'Home':
-            container.innerHTML = `
-            <div>
-                <div class="category"><h1>BEST SELLERS</h1>
-            </div>
-            `;
+            category.innerHTML = ` 
+                <h1 class='category'>BEST SELLERS (pls change my color)</h1>
+            `;                                          
+            container.innerHTML = ``;
+            fetchProducts(currentPage);
         break;
         case 'All':
         case 'Flower':
         case 'Tree':
         case 'Shrub':
+            category.innerHTML = `
+                <div class="sortSelect">
+                    <label for="sortBy">Sort By:</label>
+                    <select name="sortBy" id="sorting">
+                        <option value="ASCPrice">Lowest to Highest Price</option>
+                        <option value="DESCPrice">Highest to Lowest Price</option>
+                        <option value="ASCLetters">Plant Name A-Z</option>
+                        <option value="DESCLetters">Plant Name Z-A</option>
+                        <option value="ASCQuantAvail">Lowest to Highest # Available</option>
+                        <option value="DESCQuantAvail">Highest to Lowest # Available</option>
+                        <input type="submit" value="SORT">
+                    </select>
+                </div>
+            `;
+            container.innerHTML = '';
             fetchProducts(currentPage);
             break;
     }

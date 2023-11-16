@@ -41,7 +41,7 @@ if (isset($_POST['itemName'])) {
     $result = '';
     switch($itemName) {
         case 'Home':
-            $sql = "SELECT * FROM `plant_data` LIMIT 10"; //temporary
+            $sql = "SELECT * FROM `plant_data` WHERE `plant_quantity_available` < 50 LIMIT 10"; //for best sellers
             break;
         case 'All':
             $sql = "SELECT * FROM `plant_data` ORDER BY `plant_name`";

@@ -36,6 +36,12 @@ if (isset($_POST['addToCart'])) {
     echo "Successfully added to cart!";
 } 
 
+if (isset($_POST['Search'])) {
+    $searchQuery = $_POST['Search'];
+    $sql = "SELECT * FROM `plant_data` WHERE `plant_name` LIKE '%$searchQuery%'";
+    $result = mysqli_query($con, $sql);
+}
+
 if (isset($_POST['itemName'])) {
     $itemName = $_POST['itemName'];
     $result = '';
@@ -54,10 +60,6 @@ if (isset($_POST['itemName'])) {
             break;
         case 'Shrub':
             $sql = "SELECT * FROM `plant_data` WHERE `plant_type` = 'Shrub'";
-            break;
-        case 'Search':
-            $searchQuery = $_POST['itemName'];
-            $sql = "SELECT * FROM `plant_data` WHERE `plant_name` LIKE '$searchQuery'";
             break;
     }
     $result = mysqli_query($con, $sql);

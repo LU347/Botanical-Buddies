@@ -1,11 +1,12 @@
 const container = document.getElementById('container');
 const category = document.getElementById('category');
 var plantObjects = [];
-var currentPage = 'Home'; //home is starting page
+var searchButton = document.querySelector('.searchButton');
+var searchInput = document.getElementById('Search');
 
 document.addEventListener('DOMContentLoaded', function() {
     initializeEventListeners();
-    displayProducts(currentPage);
+    pageLoader('Home');
 });
 
 function initializeEventListeners() {
@@ -13,15 +14,88 @@ function initializeEventListeners() {
     navbarItems.forEach(function(item) {
         item.addEventListener('click', function() {
             var itemType = this.dataset.name;
-            currentPage = itemType;
-            displayProducts();
+            pageLoader(itemType);
         });
     });
+    
+    searchButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        pageLoader('Search');
+    });
+}
 
-    //TODO sent to php
-    var searchBar = document.getElementById('searchBar');
-    searchBar.addEventListener('submit', function() {
-        console.log("temporary");
+function pageLoader(currentPage) {
+    switch(currentPage) {
+        case 'Home':
+            category.innerHTML = ` 
+                <h1 class='category'>BEST SELLERS (pls change my color)</h1>
+            `;                                          
+            container.innerHTML = ``;
+            fetchProducts(currentPage);
+        break;
+        case 'Search':
+            category.innerHTML = `
+            <div class="sortSelect">
+                <label for="sortBy">Sort By:</label>
+                <select name="sortBy" id="sortBy">
+                    <option value="ASCPrice">Lowest to Highest Price</option>
+                    <option value="DESCPrice">Highest to Lowest Price</option>
+                    <option value="ASCLetters">Plant Name A-Z</option>
+                    <option value="DESCLetters">Plant Name Z-A</option>
+                    <option value="ASCQuantAvail">Lowest to Highest # Available</option>
+                    <option value="DESCQuantAvail">Highest to Lowest # Available</option>
+                    <input type="submit" value="SORT">
+                </select>
+            </div>
+            `;
+            container.innerHTML = ``;
+            displaySearchResults(searchInput.value);
+            break;
+        case 'All':
+        case 'Flower':
+        case 'Tree':
+        case 'Shrub':
+            category.innerHTML = `
+                <div class="sortSelect">
+                    <label for="sortBy">Sort By:</label>
+                    <select name="sortBy" id="sortBy">
+                        <option value="ASCPrice">Lowest to Highest Price</option>
+                        <option value="DESCPrice">Highest to Lowest Price</option>
+                        <option value="ASCLetters">Plant Name A-Z</option>
+                        <option value="DESCLetters">Plant Name Z-A</option>
+                        <option value="ASCQuantAvail">Lowest to Highest # Available</option>
+                        <option value="DESCQuantAvail">Highest to Lowest # Available</option>
+                        <input type="submit" value="SORT">
+                    </select>
+                </div>
+            `;
+            container.innerHTML = '';
+            fetchProducts(currentPage);
+            break;
+    }
+}
+
+function displaySearchResults(searchQuery) {
+    fetch('./assets/php/plantData.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'Search=' + encodeURIComponent(searchQuery),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Response from server:', data);
+        if (Array.isArray(data)) {
+            plantObjects = [];
+            parseItems(data);
+        }
+        else {
+            container.innerHTML = "No results found";
+        }
+    })
+    .catch(error => {
+        console.error('error', error);
     });
 }
 
@@ -56,7 +130,11 @@ function parseItems(data) {                 //parses json items into plant objec
         }
         plantObjects.push(plantObject);
     });
-    displayCards();                         //creates and displays the product cards
+
+    plantObjects.forEach(plant => {
+        const cardElement = createCard(plant);
+        container.appendChild(cardElement);
+    });
 }
 
 function createCard(plant) {
@@ -75,7 +153,7 @@ function createCard(plant) {
                 <p id="itemPrice" class="cardprice">$${plant.price}</p>
                 <p id="itemQuantity" class="cardquantityAvail">Quantity Available: ${plant.quantityAvailable}</p>
         </div>
-        <form action="assets/php/plantData.php" method="post" class="addToCartForm">
+        <form action="./assets/php/plantData.php" method="post" class="addToCartForm">
             <input type="hidden" name="addToCart" value="${plant.name}">
             <button type="submit" class="cardbutton">Add to cart</button>
         </form>
@@ -87,7 +165,6 @@ function createCard(plant) {
         console.log('atc button triggered');
         event.preventDefault(); 
         addToCart(plant.name);
-        
     });
 
     cardElement.appendChild(plantElement);
@@ -111,51 +188,4 @@ function addToCart(plantName) {
     });
 
     console.log('added to cart', plantName); 
-}
-
-function displayCards() {
-    plantObjects.forEach(plant => {
-        const cardElement = createCard(plant);
-        container.appendChild(cardElement);
-    });
-}
-
-function displayProducts() {
-    switch(currentPage) {
-        case 'Home':
-            category.innerHTML = ` 
-                <h1 class='category'>BEST SELLERS (pls change my color)</h1>
-            `;                                          
-            container.innerHTML = ``;
-            fetchProducts(currentPage);
-        break;
-        case 'Search':     //TODO:
-            category.innerHTML = `
-                <h1 class="title">$numFound results for $searchquery</h1>
-            `;
-            container.HTML = '';
-            fetchProducts(currentPage);
-            break;
-        case 'All':
-        case 'Flower':
-        case 'Tree':
-        case 'Shrub':
-            category.innerHTML = `
-                <div class="sortSelect">
-                    <label for="sortBy">Sort By:</label>
-                    <select name="sortBy" id="sortBy">
-                        <option value="ASCPrice">Lowest to Highest Price</option>
-                        <option value="DESCPrice">Highest to Lowest Price</option>
-                        <option value="ASCLetters">Plant Name A-Z</option>
-                        <option value="DESCLetters">Plant Name Z-A</option>
-                        <option value="ASCQuantAvail">Lowest to Highest # Available</option>
-                        <option value="DESCQuantAvail">Highest to Lowest # Available</option>
-                        <input type="submit" value="SORT">
-                    </select>
-                </div>
-            `;
-            container.innerHTML = '';
-            fetchProducts(currentPage);
-            break;
-    }
 }

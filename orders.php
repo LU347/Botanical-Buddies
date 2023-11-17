@@ -13,13 +13,14 @@ echo '<script type="text/javascript" src="cartScript.js"></script>';
     $port = 3307;
     $password = "";
     $db = "plants";
-    $pdo = new PDO("mysql:host=$server;port=$port;dbname=$db", $user);
+    $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
+    //$pdo = new PDO("mysql:host=$server;port=$port;dbname=$db", $user);
 
     $subtotal = 0.00;
     $totalitems = 0;
     
     $sql = 'SELECT order_id, order_date, order_price, num_items FROM orderhistory';
-  
+    
     $statement = $pdo->query($sql);
     $orders = $statement->fetchAll(PDO::FETCH_ASSOC);
 

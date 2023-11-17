@@ -21,34 +21,152 @@ session_start();
 }
 
 </script>
-    <style>
-        table{
-            width: 70%;
-            margin: auto;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-        table, tr, th, td{
-            border: 1px solid #d4d4d4;
-            border-collapse: collapse;
-            padding: 12px;
-        }
-        th, td{
-            text-align: left;
-            vertical-align: top;
-        }
-        tr:nth-child(even){
-            background-color: #e7e9eb;
-        }
-        @import url('https://fonts.googleapis.com/css2?family=Gabarito&display=swap');
+    
+<body>
+      
+<?php
 
+echo '<script type="text/javascript" src="cartScript.js"></script>';
+
+
+    //storing database details in variables.
+    
+    $db_host="partygoer.mysql.database.azure.com";        
+    $db_user="matthewmartinez";        
+    $db_pass="1qaz2wsx!QAZ@WSX";        
+    $db_name="herewego";  
+    $server = "localhost";
+    $user = "root";
+    $port = 3307;
+    $password = "";
+    $db = "plants";
+    //$pdo = new PDO("mysql:host=$server;port=$port;dbname=$db", $user);
+    //uncomment to switch host
+    $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
+    $subtotal = 0.00;
+    $totalitems = 0;
+    
+    //$sql = 'SELECT plant_name, plant_image_url, plant_quantity, plant_price, plant_type, plant_description FROM plant WHERE plant_quantity >= 1';
+    $sql = 'SELECT plant_name, plant_image_url, plant_quantity, plant_price, plant_type, plant_description FROM plant_data WHERE plant_quantity >= 1';
+    $statement = $pdo->query($sql);
+    $plants = $statement->fetchAll(PDO::FETCH_ASSOC);
+    echo'
+    <body>
+    <header>
+    <nav>
+        <ul>
+            <li class="title"><a href="#"><img class="logo" src="images/plant-icon.svg" alt="logo" height="50px" width="50px">Botanical Buddies</a></li>
+            <li> <!-- temp -->
+                <a href="cart.html"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM246-720l96 200h280l110-200H246Zm-38-80h590q23 0 35 20.5t1 41.5L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68-39.5t-2-78.5l54-98-144-304H40v-80h130l38 80Zm134 280h280-280Z"/></svg>
+                Items in Cart: $num
+                </a>
+            </li>
+            <li> <!-- temp -->
+                <a href="login.html"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M234-276q51-39 114-61.5T480-360q69 0 132 22.5T726-276q35-41 54.5-93T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 59 19.5 111t54.5 93Zm246-164q-59 0-99.5-40.5T340-580q0-59 40.5-99.5T480-720q59 0 99.5 40.5T620-580q0 59-40.5 99.5T480-440Zm0 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q53 0 100-15.5t86-44.5q-39-29-86-44.5T480-280q-53 0-100 15.5T294-220q39 29 86 44.5T480-160Zm0-360q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm0-60Zm0 360Z"/></svg>
+                </a>
+            </li>
+        </ul>
+        <ul id="navbar">
+            <li class="testing" data-name="Home">Home</li>
+            <li data-name="All">All</li>
+            <li data-name="Flower">Flowers</li>
+            <li data-name="Tree">Trees</li>
+            <li data-name="Shrub">Shrubs</li>
+        </ul>
+    </nav>
+</header>
+<div>
+<marquee class="announcement" behavior="scroll" direction="right" scrollamount="4">🌿coupon codes🌿</marquee>
+</div>';
+    echo'<main>
+    <div class="basket">
+
+                <div class="basket-labels">
+                    <ul>
+                    <li class="item item-heading">Item</li>
+                    <li class="price">Price</li>
+                    <li class="quantity">Quantity</li>
+                    <li class="subtotal">Subtotal</li>
+                    </ul>
+                </div>
+            ';
+    
+    foreach ($plants as $plant) {
+        $totalprice = $plant['plant_price'] * $plant['plant_quantity'] ;
+        $subtotal += (float) $totalprice;
+        $totalitems += $plant['plant_quantity'];
+        echo ' <div class="basket-product" id="demo">
+        <div class="item">
+          <div class="product-image">
+            <img src=' . $plant["plant_image_url"] .' alt="Placholder Image 2" class="product-frame">
+          </div>
+          <div class="product-details">
+            <h1><strong><span class="item-quantity">'. $plant["plant_quantity"] .'</span> ' . $plant["plant_name"] . '</strong></h1>
+            <p><strong>' . $plant["plant_description"] . '</strong></p>
+          </div>
+        </div>
+        <div class="price">' . $plant["plant_price"] . '</div>
+        <div class="quantity">
+          <input type="number" value=' . $plant["plant_quantity"] . ' min="1" class="quantity-field">
+        </div>
+        <div class="subtotal">' . $totalprice . '</div>
+        
+      </div>';
+            
+    }
+    $taxPercent = 8.25 / 100;
+    $salesTax = number_format((float)$subtotal * $taxPercent, 1, '.', '');
+    $cartTotal = number_format((float)$subtotal + $salesTax, 2, '.', '');
+    echo ' <div class="basket-module">
+                <label for="promo-code">Enter a promotional code</label>
+                <input id="promo-code" type="text" name="promo-code" maxlength="5" class="promo-code-field">
+                <button onClick="discount()" class="promo-code-cta">Apply</button>
+            </div>
+            </div>';
+$checkout = "'checkout.php'";
+    echo '<aside>
+    <div class="summary">
+      <div class="summary-total-items"><span class="total-items"></span> '. $totalitems .' Items in your Cart</div>
+      <div class="summary-subtotal">
+        <div class="subtotal-title">Subtotal</div>
+        <div class="subtotal-value final-value" id="basket-subtotal">' . $subtotal . '</div>
+        <div class="summary-promo">
+          <div class="promo-title">Promotion</div>
+          <div class="promo-value final-value" id="basket-promo">0</div>
+        </div>
+        <div class="summary-promo">
+          <div class="promo-title">Taxes</div>
+          <div class="promo-value final-value" id="taxes">' . $salesTax . '</div>
+        </div>
+      </div>
+      <div class="summary-total">
+        <div class="total-title">Total</div>
+        <div class="total-value final-value" id="basket-total">' . $cartTotal .'</div>
+      </div>
+      <div class="summary-checkout">
+        <button  onclick="window.location.href='.$checkout.';" class="checkout-cta">Go to Secure Checkout</button>
+      </div>
+    </div>
+  </aside>';
+    echo '
+    </div>
+        </body>
+    </main>';
+    echo '<script type="text/javascript">jsFunction("price", '. $cartTotal .');</script>';
+    echo '<script type="text/javascript">jsFunction("items", '. $totalitems .');</script>';
+    
+
+?>
+
+
+<style>
 * {
-    font-family: "Gabarito";
+    font-family: 'Gabarito', 'sans-serif';
     font-weight: 400;
-    font-size: 16px;
-    scroll-behavior: smooth !important;
-    scroll-padding-top: 120px;
     margin: 0;
     padding: 0;
+    scroll-behavior: smooth !important;
+    scroll-padding-top: 120px;
 }
 
 header {
@@ -58,66 +176,244 @@ header {
 body {
     color: black;
     background-color: white;
+    background-image: url("../../images/white_flowers.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("../../images/white_flowers.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
     min-height: 100vh;
+}
+
+.center {
+    margin: auto;
+    width: 25%;
+    height: 60%;
+    background-color: white;
+    border: 3px solid rgb(212, 219, 144);
+    padding: 10px;
+    height: 300px;
+  }
+
+  table{
+    margin: auto;
+    height: 300px;
+  }
+
+  td {
+    width: 50px;
+    margin: auto;
+  }
+
+  .info {
+    height: 400px;
+    width: 300px;
+  }
+    
+  .accountinfo {
+    margin-left: 40% ;
+    background-color: white;
+    display: inline-block;
+    border: 3px solid rgb(212, 219, 144);
+    text-align: center;text-align: center;
+    padding-bottom: 3%;
+}
+
+    .userinput{
+        margin-top: 2%;
+    }
+
+  .accountinfo::after{
+    content: "";
+    clear: both;
+    display: table;
+}
+
+  input[type=submit] {
+    background-color: rgb(212, 219, 144);
+    width: 80px;
+    height: 40px;
+  }
+
+  input[name=create] {
+    width: 250px;
+    height: 40px;
+  }
+
+.card {
+    box-shadow: 0px 2px 20px rgba(0,0,0,0.1);
+    cursor: pointer;
+    display: flex;
+    font-size: 0.8rem;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0.625rem;
+    max-width: 12rem;
+    position: relative;
+    overflow: hidden;
+    transition: transfom 200ms ease-in;
+}
+
+.cardimage {
+    height: 8rem;
+    object-fit: cover;
+    width: 100%;
+    image-resolution: 300dpi;
+}
+
+.cardtitle {
+    margin: 0.1rem;
+    padding: 0 1rem;
+    font-family: 'Noto Serif Old Uyghur', 'serif';
+}
+
+.carddescription {
+    margin: 0.1rem;
+    font-weight: 100;
+    padding: 0 1rem;
+    font-family: 'Kay Pho Du', serif;
+    font-style: italic;
+}
+
+.cardbody {
+    flex-grow: 1;
+}
+
+.cardbutton {
+    background: transparent;
+    border: 0.125rem solid;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 1rem;
+    margin: 1rem;
+    padding: 1rem;
+    transition:
+        background 200ms ease-in,
+        color 200ms ease-in;
+    width: 80%;
+    font-family: 'Kay Pho Du', serif;
+}
+
+.cardprice {
+    padding: 0 1rem;
+    font-size: 2rem;
+    font-family: 'Noto Serif Old Uyghur', serif;
+}
+
+.cardquantityAvail {
+    padding: 0 1rem;
+    font-size: 0.7rem;
+    font-family: 'Noto Serif Old Uyghur', serif;
+}
+
+.card:hover {
+    transform:scale(1.02);
+}
+
+.cardbutton:hover {
+    background: green;
+    color: white;
+}
+
+.container {
+    display:flex;
+}
+
+.carousel {
+    /* temp grid*/
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem,14rem));
+    grid-gap: 0.2rem;
+    justify-content: center;
+}
+
+.category {
+    background-color: rgba(133, 133, 133, 0.213);
+    display: flex;
+    font-family: 'Noto Serif Old Uyghur', serif;
+    justify-content: center;
+    margin: 1rem;
+    width: calc(100vw - 1.5rem);
 }
 
 nav {
     background-color: white;
+    border-top: 5px;
+    border-color:rgba(0, 0, 0, 0.202);
+    border-style: solid;
     box-shadow: 5px 5px 5px rgba(0,0,0,0.1);
     width: 100%;
+    font-size: 20px;
 }
 
 nav ul {
-    width: 100%;
-    list-style: none;
-    display: flex;
-    justify-content: flex-start;
     align-items: center;
+    display: flex;
+    justify-content:center;
+    list-style: none;
+    margin: 0.5rem;
+    width: 100%;
 }
 
 nav li {
-    height: 50px;
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    height: 100%;
+    justify-content: center;
     width: 100%;
-    padding: 0 5px;
+}
+
+nav li:hover {
+    color: green;
 }
 
 nav a {
     height: 100%;
-    padding: 0 30px;
+    padding: 0 1.25rem;
     display: flex;
     align-items: center;
     text-decoration: none;
     color: black;
 }
 
-nav li:first-child li:nth-child(2){
-    margin-right: auto;
-}
-
-.sidebar {
-    position: fixed;
-    background-color: rgb(182, 199, 186);
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 250px;
-    z-index: 0;
-    display: none;
-    flex-direction: column;
-    align-items: flex-start;
+.title {
+    font-size: 18px;
+    margin-left: auto;
     justify-content: flex-start;
+
 }
 
-.sidebar li {
-    width: 100%;
+.searchBar {
+    height:100%;
+    width:100%;
+    background-image: url(/images/search-icon.svg);
+    background-repeat: no-repeat;
 }
 
-.sidebar a {
-    width: 100%;
+.sortSelect {
+    margin: 1rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width:50%;
 }
 
 .menuButton {
     display: none;
+}
+
+.announcement {
+    width: 100%;
+    border: 0.125rem;
+    border-style: double;
+    background-color: rgb(212, 219, 144);
+    text-align: center;
+}
+
+.parent {
+    display: grid;
+    grid-template: auto 1fr auto / auto 1fr auto;
 }
 
 @media(max-width: 600px)
@@ -235,19 +531,8 @@ html a {
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
 }
 
-body {
-  background-color: #fff;
-  color: #666;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 62.5%;
-  margin: 0 auto;
-}
 
-a {
-  border: 0 none;
-  outline: 0;
-  text-decoration: none;
-}
+
 
 strong {
   font-weight: bold;
@@ -630,112 +915,5 @@ aside {
 
 
     </style>
-<body>
-      
-<?php
-
-echo '<script type="text/javascript" src="cartScript.js"></script>';
-
-
-    //storing database details in variables.
-    
-    $db_host="partygoer.mysql.database.azure.com";        
-    $db_user="matthewmartinez";        
-    $db_pass="1qaz2wsx!QAZ@WSX";        
-    $db_name="herewego";  
-    $server = "localhost";
-    $user = "root";
-    $port = 3307;
-    $password = "";
-    $db = "plants";
-    $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
-
-    $subtotal = 0.00;
-    $totalitems = 0;
-    
-    $sql = 'SELECT plant_name, plant_image_url, plant_quantity, plant_price, plant_type, plant_description FROM plant_data WHERE plant_quantity >= 1';
-  
-    $statement = $pdo->query($sql);
-    $plants = $statement->fetchAll(PDO::FETCH_ASSOC);
-    echo'<main>
-    <div class="basket">
-
-                <div class="basket-labels">
-                    <ul>
-                    <li class="item item-heading">Item</li>
-                    <li class="price">Price</li>
-                    <li class="quantity">Quantity</li>
-                    <li class="subtotal">Subtotal</li>
-                    </ul>
-                </div>
-            ';
-    
-    foreach ($plants as $plant) {
-        $totalprice = $plant['plant_price'] * $plant['plant_quantity'] ;
-        $subtotal += (float) $totalprice;
-        $totalitems += $plant['plant_quantity'];
-        echo ' <div class="basket-product" id="demo">
-        <div class="item">
-          <div class="product-image">
-            <img src=' . $plant["plant_image_url"] .' alt="Placholder Image 2" class="product-frame">
-          </div>
-          <div class="product-details">
-            <h1><strong><span class="item-quantity">'. $plant["plant_quantity"] .'</span> ' . $plant["plant_name"] . '</strong></h1>
-            <p><strong>' . $plant["plant_description"] . '</strong></p>
-          </div>
-        </div>
-        <div class="price">' . $plant["plant_price"] . '</div>
-        <div class="quantity">
-          <input type="number" value=' . $plant["plant_quantity"] . ' min="1" class="quantity-field">
-        </div>
-        <div class="subtotal">' . $totalprice . '</div>
-        
-      </div>';
-            
-    }
-    $taxPercent = 8.25 / 100;
-    $salesTax = number_format((float)$subtotal * $taxPercent, 1, '.', '');
-    $cartTotal = number_format((float)$subtotal + $salesTax, 2, '.', '');
-    echo ' <div class="basket-module">
-                <label for="promo-code">Enter a promotional code</label>
-                <input id="promo-code" type="text" name="promo-code" maxlength="5" class="promo-code-field">
-                <button onClick="discount()" class="promo-code-cta">Apply</button>
-            </div>
-            </div>';
-$checkout = "'checkout.php'";
-    echo '<aside>
-    <div class="summary">
-      <div class="summary-total-items"><span class="total-items"></span> '. $totalitems .' Items in your Bag</div>
-      <div class="summary-subtotal">
-        <div class="subtotal-title">Subtotal</div>
-        <div class="subtotal-value final-value" id="basket-subtotal">' . $subtotal . '</div>
-        <div class="summary-promo">
-          <div class="promo-title">Promotion</div>
-          <div class="promo-value final-value" id="basket-promo">0</div>
-        </div>
-        <div class="summary-promo">
-          <div class="promo-title">Taxes</div>
-          <div class="promo-value final-value" id="taxes">' . $salesTax . '</div>
-        </div>
-      </div>
-      <div class="summary-total">
-        <div class="total-title">Total</div>
-        <div class="total-value final-value" id="basket-total">' . $cartTotal .'</div>
-      </div>
-      <div class="summary-checkout">
-        <button  onclick="window.location.href='.$checkout.';" class="checkout-cta">Go to Secure Checkout</button>
-      </div>
-    </div>
-  </aside>';
-    echo '</main>';
-    echo '<script type="text/javascript">jsFunction("price", '. $cartTotal .');</script>';
-    echo '<script type="text/javascript">jsFunction("items", '. $totalitems .');</script>';
-    echo $_COOKIE["price"];
-    
-
-?>
-
-
-
 </body>
 </html>

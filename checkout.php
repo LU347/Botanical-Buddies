@@ -52,17 +52,17 @@ if (isset($_SESSION['user_id'])) {
     echo "   ";
     echo $_COOKIE["items"]; 
 
-    $sql = "UPDATE plant SET plant_quantity_available = (plant_quantity_available - plant_quantity)";
+    $sql = "UPDATE `plant_data` SET plant_quantity_available = (plant_quantity_available - plant_quantity)";
     $statement = $pdo->prepare($sql);
     $statement->execute();  
 
-    $sql = "INSERT INTO orderhistory (order_username, num_items, order_price, order_date)
-    VALUES  ($user_id, $_COOKIE[items], $_COOKIE[price], now())";
-    $statement = $pdo->prepare($sql);
-    $statement->execute();
+    ///$sql = "INSERT INTO `orderhistory` (order_username, num_items, order_price, order_date)
+    //VALUES  ($user_id, $_COOKIE[items], $_COOKIE[price], now())";
+    //$statement = $pdo->prepare($sql);
+    //$statement->execute();
      
 
-     $sql = "UPDATE plant SET plant_quantity = 0";
+     $sql = "UPDATE `plant_data` SET plant_quantity = 0";
      $statement = $pdo->prepare($sql);
      $statement->execute();
 

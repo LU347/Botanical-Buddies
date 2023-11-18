@@ -1,11 +1,11 @@
-const container = document.getElementById('container');
-const category = document.getElementById('category');
+var container;
+var category;
 var plantObjects = [];
-var searchButton = document.querySelector('.searchButton');
-var searchInput = document.getElementById('Search');
 
 document.addEventListener('DOMContentLoaded', function() {
     initializeEventListeners();
+    container = document.getElementById('container');
+    category = document.getElementById('category');
     pageLoader('Home');
 });
 
@@ -18,6 +18,8 @@ function initializeEventListeners() {
         });
     });
     
+    var searchButton = document.querySelector('.searchButton');
+
     searchButton.addEventListener('click', function(event) {
         event.preventDefault();
         pageLoader('Search');
@@ -49,6 +51,7 @@ function pageLoader(currentPage) {
             </div>
             `;
             container.innerHTML = ``;
+            var searchInput = document.getElementById('Search');
             displaySearchResults(searchInput.value);
             break;
         case 'All':

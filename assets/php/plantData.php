@@ -38,7 +38,7 @@ if (isset($_POST['addToCart'])) {
 
 if (isset($_POST['Search'])) {
     $searchQuery = $_POST['Search'];
-    $sql = "SELECT * FROM `plant_data` WHERE `plant_name` LIKE '%$searchQuery%'";
+    $sql = "SELECT * FROM `plant_data` WHERE 'plant_quantity_available > 1 WHERE `plant_name` LIKE '%$searchQuery%'";
     $result = mysqli_query($con, $sql);
 }
 
@@ -47,19 +47,19 @@ if (isset($_POST['itemName'])) {
     $result = '';
     switch($itemName) {
         case 'Home':
-            $sql = "SELECT * FROM `plant_data` WHERE `plant_quantity_available` < 50 ORDER BY `plant_quantity_available` ASC"; //for best sellers
+            $sql = "SELECT * FROM `plant_data` WHERE plant_quantity_available < 50 AND plant_quantity_available > 0 ORDER BY `plant_quantity_available` ASC"; //for best sellers
             break;
         case 'All':
-            $sql = "SELECT * FROM `plant_data` ORDER BY `plant_name`";
+            $sql = "SELECT * FROM `plant_data` WHERE plant_quantity_available > 0 ORDER BY `plant_name`";
             break;
         case 'Flower':
-            $sql = "SELECT * FROM `plant_data` WHERE `plant_type` = 'Flower'";
+            $sql = "SELECT * FROM `plant_data` WHERE plant_quantity_available > 0 AND `plant_type` = 'Flower' ";
             break;
         case 'Tree':
-            $sql = "SELECT * FROM `plant_data` WHERE `plant_type` = 'Tree'";
+            $sql = "SELECT * FROM `plant_data` WHERE plant_quantity_available > 0 AND `plant_type` = 'Tree'";
             break;
         case 'Shrub':
-            $sql = "SELECT * FROM `plant_data` WHERE `plant_type` = 'Shrub'";
+            $sql = "SELECT * FROM `plant_data` WHERE plant_quantity_available > 0 AND `plant_type` = 'Shrub'";
             break;
     }
     $result = mysqli_query($con, $sql);

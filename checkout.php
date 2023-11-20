@@ -56,10 +56,11 @@ if (isset($_SESSION['user_id'])) {
     $statement = $pdo->prepare($sql);
     $statement->execute();  
 
-    ///$sql = "INSERT INTO `orderhistory` (order_username, num_items, order_price, order_date)
-    //VALUES  ($user_id, $_COOKIE[items], $_COOKIE[price], now())";
-    //$statement = $pdo->prepare($sql);
-    //$statement->execute();
+    $sql = "INSERT INTO orderhistory (order_username, num_items, order_price, order_date)
+    VALUES  (?,?,?,?)";
+    $statement = $pdo->prepare($sql);
+    $date = date('Y-m-d H:i:s');
+    $statement->execute([$user_id, $_COOKIE["items"], $_COOKIE["price"], $date]);
      
 
      $sql = "UPDATE `plant_data` SET plant_quantity = 0";

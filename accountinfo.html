@@ -19,13 +19,10 @@
                         </a>
                     </li>
                 </ul>
-                <ul id="navbar">
-                    <li class="testing" data-name="Home">Home</li>
-                    <li data-name="All">All</li>
-                    <li data-name="Flower">Flowers</li>
-                    <li data-name="Tree">Trees</li>
-                    <li data-name="Shrub">Shrubs</li>
-                </ul>
+                <div class="userinput">
+                <a href="orders.php">Order History</a>
+                <a href="logout.php">Log Out</a>
+            </div>
             </nav>
         </header>
         <main>
@@ -38,6 +35,7 @@
         </main>
 
         <div class="accountinfo">
+            <div>
         <table class="info">
             <th>Account Information</th>
             <tr>
@@ -48,15 +46,10 @@
                 <th>Email</th>
                 <td id="email"></td>
             </tr>
-
+        </div>
             
         </table>
-        <div class="userinput">
-            <form method="post" action="orders.php">
-                <input type="button" name="orderhistory" value="Order History"/>
-            </form>
-        </div>
-
+        
 </div>
     </body>
 </html>

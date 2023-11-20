@@ -61,11 +61,12 @@ body {
     background-color: white;
     display: inline-block;
     border: 3px solid rgb(212, 219, 144);
-    text-align: center;text-align: center;
+    text-align: center;
     padding-bottom: 3%;
 }
 
     .userinput{
+        display: flex;
         margin-top: 2%;
     }
 

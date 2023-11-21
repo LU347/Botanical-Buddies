@@ -88,6 +88,7 @@ body {
   }
 
 .card {
+    background-color: white;
     box-shadow: 0px 2px 20px rgba(0,0,0,0.1);
     cursor: pointer;
     display: flex;

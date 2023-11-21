@@ -19,7 +19,6 @@ function initializeEventListeners() {
     });
     
     var searchButton = document.querySelector('.searchButton');
-
     searchButton.addEventListener('click', function(event) {
         event.preventDefault();
         pageLoader('Search');

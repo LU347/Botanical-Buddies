@@ -38,7 +38,7 @@ if (isset($_POST['addToCart'])) {
 
 if (isset($_POST['Search'])) {
     $searchQuery = $_POST['Search'];
-    $sql = "SELECT * FROM `plant_data` WHERE 'plant_quantity_available > 1 WHERE `plant_name` LIKE '%$searchQuery%'";
+    $sql = "SELECT * FROM `plant_data` WHERE `plant_quantity_available` > 1 AND `plant_name` LIKE '%$searchQuery%'";
     $result = mysqli_query($con, $sql);
 }
 

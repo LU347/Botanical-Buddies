@@ -1,27 +1,30 @@
+<!DOCTYPE html>
 <html>
     <head>
-        <title>Administrator</title>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script src="assets/js/admin.js"></script>
-        <link rel="stylesheet" href="assets/css/admin.css">
+        <meta charset="utf-8">
+        <title>Botanical Buddies</title>
+        <link rel="stylesheet" href="assets/css/style.css">
     </head>
-   
     <body>
         <header>
-            <h1>Administrative Controls</h1>
+            <nav>
+                <ul>
+                    <li class="title"><a href="admin.html"><img class="logo" src="images/plant-icon.svg" alt="logo" height="50px" width="50px">Botanical Buddies</a></li>
+                </ul>
+            </nav>
+            <nav id="navbar">
+                <ul>
+                    <li><a href="admin.html">Admin Homepage</a></li>
+                    <li><a href="deleteInventory.php">Delete Inventory</a></li>
+                    <li><a href="orderHistory.php">Order History</a></li>
+                    <li><a href="logout.php">Log Out</a></li>
+                </ul>
+            </nav>
         </header>
-        <nav>
-            <a href="admin.html">Administrative Home Page</a>
-            <a href="deleteAccount.php">Delete Accounts</a>
-            <a href="deleteInventory.php">Delete Inventory</a>
-            <a href="orderHistory.php">Order History</a>
-            <a href="logout.php">Logout</a>
-        </nav>
-        <div class="container">
-            <section>
-            <p>Welcome to Botanical Buddies Administrative Controls, where you can do the following: <br><ul><li>Delete Accounts</li><li>Delete Inventory</li><li>Show all Order History</li></ul></p><br><br>
-        </section>
-            
+        <div class="center">
+           <p>Welcome to Botanical Buddies Administrative Portal<br>Where you can do the following: <br><ul><li>Create Accounts</li><li>Delete Inventory items</li><li>View Order History</li></ul></p>
         </div>
+        <script src="assets/js/main.js"></script>
+       
     </body>
 </html>

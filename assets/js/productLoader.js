@@ -36,28 +36,7 @@ function pageLoader(currentPage) {
         break;
         case 'Search':
             category.innerHTML = `
-            <div class="sortSelect">
-                <label for="sortBy">Sort By:</label>
-                <select name="sortBy" id="sortBy">
-                    <option value="ASCPrice">Lowest to Highest Price</option>
-                    <option value="DESCPrice">Highest to Lowest Price</option>
-                    <option value="ASCLetters">Plant Name A-Z</option>
-                    <option value="DESCLetters">Plant Name Z-A</option>
-                    <option value="ASCQuantAvail">Lowest to Highest # Available</option>
-                    <option value="DESCQuantAvail">Highest to Lowest # Available</option>
-                    <input type="submit" value="SORT">
-                </select>
-            </div>
-            `;
-            container.innerHTML = ``;
-            var searchInput = document.getElementById('Search');
-            displaySearchResults(searchInput.value);
-            break;
-        case 'All':
-        case 'Flower':
-        case 'Tree':
-        case 'Shrub':
-            category.innerHTML = `
+            <div class="container">
                 <div class="sortSelect">
                     <label for="sortBy">Sort By:</label>
                     <select name="sortBy" id="sortBy">
@@ -70,6 +49,31 @@ function pageLoader(currentPage) {
                         <input type="submit" value="SORT">
                     </select>
                 </div>
+            </div>
+            `;
+            container.innerHTML = ``;
+            var searchInput = document.getElementById('Search');
+            displaySearchResults(searchInput.value);
+            break;
+        case 'All':
+        case 'Flower':
+        case 'Tree':
+        case 'Shrub':
+            category.innerHTML = `
+            <div class="container">
+                <div class="sortSelect">
+                    <label for="sortBy">Sort By:</label>
+                    <select name="sortBy" id="sortBy">
+                        <option value="ASCPrice">Lowest to Highest Price</option>
+                        <option value="DESCPrice">Highest to Lowest Price</option>
+                        <option value="ASCLetters">Plant Name A-Z</option>
+                        <option value="DESCLetters">Plant Name Z-A</option>
+                        <option value="ASCQuantAvail">Lowest to Highest # Available</option>
+                        <option value="DESCQuantAvail">Highest to Lowest # Available</option>
+                        <input type="submit" value="SORT">
+                    </select>
+                </div>
+            </div>
             `;
             container.innerHTML = '';
             fetchProducts(currentPage);

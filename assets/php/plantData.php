@@ -30,13 +30,13 @@ if (isset($_POST['Search'])) {
 
 if (isset($_POST['sortBy']) && isset($_POST['currentPage'])) {
     $order = $_POST['sortBy'];
-    $itemType = $_POST['currentPage'];
+    $currentPage = $_POST['currentPage'];
     $andCase;
-    
-    if ($itemType == 'All') {
+
+    if ($currentPage == 'All') {
         $andCase = 1;  //where 1 = true so I don't have to make a separate switch statement for 'All'
     } else {
-        $andCase = "`plant_type` = '$itemType'";
+        $andCase = "`plant_type` = '$currentPage'"; 
     }
 
     switch($order) {
@@ -64,6 +64,7 @@ if (isset($_POST['sortBy']) && isset($_POST['currentPage'])) {
     sendPlantData($result);
 }
 
+//current Page
 if (isset($_POST['itemName'])) {
     $itemName = $_POST['itemName'];
     $result = '';
@@ -74,15 +75,8 @@ if (isset($_POST['itemName'])) {
         case 'All':
             $sql = "SELECT * FROM `plant_data` WHERE `plant_quantity_available` > 0 ORDER BY `plant_name`";
             break;
-        case 'Flower':
-            $sql = "SELECT * FROM `plant_data` WHERE `plant_quantity_available` > 0 AND `plant_type` = 'Flower'";
-            break;
-        case 'Tree':
-            $sql = "SELECT * FROM `plant_data` WHERE `plant_quantity_available` > 0 AND `plant_type` = 'Tree'";
-            break;
-        case 'Shrub':
-            $sql = "SELECT * FROM `plant_data` WHERE `plant_quantity_available` > 0 AND `plant_type` = 'Shrub'";
-            break;
+        default:
+            $sql = "SELECT * FROM `plant_data` WHERE `plant_quantity_available` > 0 AND `plant_type` = '$itemName'";
     }
     $result = mysqli_query($con, $sql);
     sendPlantData($result);

@@ -23,11 +23,8 @@ function initializeEventListeners() {
     var searchButton = document.querySelector('.searchButton');
     searchButton.addEventListener('click', function(event) {
         event.preventDefault();
+        currentPage = 'Search';
         pageLoader('Search');
-    });
-
-    $('.sortButton').on('click', 'button', function() {
-        console.log("clicked");
     });
 }
 
@@ -41,7 +38,8 @@ function pageLoader(currentPage) {
             fetchProducts(currentPage);
         break;
         case 'Search':
-            displaySortBar();
+            //displaySortBar();
+            category.innerHTML = ``;
             container.innerHTML = ``;
             var searchInput = document.getElementById('Search');
             displaySearchResults(searchInput.value);

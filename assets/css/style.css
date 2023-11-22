@@ -76,6 +76,12 @@ body {
     display: table;
 }
 
+input[type=button] {
+    background-color: rgb(212, 219, 144);
+    width: 80px;
+    height: 40px;
+  }
+
   input[type=submit] {
     background-color: rgb(212, 219, 144);
     width: 80px;

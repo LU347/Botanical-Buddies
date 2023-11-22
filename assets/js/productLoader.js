@@ -1,5 +1,6 @@
 var container;
 var category;
+var currentPage = 'Home';
 var plantObjects = [];
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -14,6 +15,7 @@ function initializeEventListeners() {
     navbarItems.forEach(function(item) {
         item.addEventListener('click', function() {
             var itemType = this.dataset.name;
+            currentPage = itemType;
             pageLoader(itemType);
         });
     });
@@ -22,6 +24,10 @@ function initializeEventListeners() {
     searchButton.addEventListener('click', function(event) {
         event.preventDefault();
         pageLoader('Search');
+    });
+
+    $('.sortButton').on('click', 'button', function() {
+        console.log("clicked");
     });
 }
 
@@ -35,22 +41,7 @@ function pageLoader(currentPage) {
             fetchProducts(currentPage);
         break;
         case 'Search':
-            category.innerHTML = `
-            <div class="container">
-                <div class="sortSelect">
-                    <label for="sortBy">Sort By:</label>
-                    <select name="sortBy" id="sortBy">
-                        <option value="ASCPrice">Lowest to Highest Price</option>
-                        <option value="DESCPrice">Highest to Lowest Price</option>
-                        <option value="ASCLetters">Plant Name A-Z</option>
-                        <option value="DESCLetters">Plant Name Z-A</option>
-                        <option value="ASCQuantAvail">Lowest to Highest # Available</option>
-                        <option value="DESCQuantAvail">Highest to Lowest # Available</option>
-                        <input type="submit" value="SORT">
-                    </select>
-                </div>
-            </div>
-            `;
+            displaySortBar();
             container.innerHTML = ``;
             var searchInput = document.getElementById('Search');
             displaySearchResults(searchInput.value);
@@ -59,27 +50,56 @@ function pageLoader(currentPage) {
         case 'Flower':
         case 'Tree':
         case 'Shrub':
-            category.innerHTML = `
-            <div class="container">
-                <div class="sortSelect">
-                    <label for="sortBy">Sort By:</label>
-                    <select name="sortBy" id="sortBy">
-                        <option value="ASCPrice">Lowest to Highest Price</option>
-                        <option value="DESCPrice">Highest to Lowest Price</option>
-                        <option value="ASCLetters">Plant Name A-Z</option>
-                        <option value="DESCLetters">Plant Name Z-A</option>
-                        <option value="ASCQuantAvail">Lowest to Highest # Available</option>
-                        <option value="DESCQuantAvail">Highest to Lowest # Available</option>
-                        <input type="submit" value="SORT">
-                    </select>
-                </div>
-            </div>
-            `;
+            displaySortBar();
             container.innerHTML = '';
             fetchProducts(currentPage);
             break;
     }
 }
+
+function displaySortBar() {
+    category.innerHTML = `
+    <div class="container">
+        <form class="sortSelect" id="sortSelect">
+            <label for="sortBy">Sort By:</label>
+            <select name="sortBy" id="sortBy" form="sortSelect">
+                <option value="ASCPrice">Lowest to Highest Price</option>
+                <option value="DESCPrice">Highest to Lowest Price</option>
+                <option value="ASCLetters">Plant Name A-Z</option>
+                <option value="DESCLetters">Plant Name Z-A</option>
+                <option value="ASCQuantAvail">Lowest to Highest # Available</option>
+                <option value="DESCQuantAvail">Highest to Lowest # Available</option>
+            </select>
+            <input type="button" value="SORT" class="sortButton" onclick="sortByForm()">
+        </form>
+    </div>
+    `;
+}
+
+function sortByForm() {
+    var sortBy = document.getElementById('sortBy').value;
+
+    fetch('./assets/php/plantData.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'sortBy=' + sortBy + '&currentPage=' + currentPage,
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Response form server:', data);
+        if (Array.isArray(data)) {
+            plantObjects = [];
+            container.innerHTML = '';
+            parseItems(data);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
 
 function displaySearchResults(searchQuery) {
     fetch('./assets/php/plantData.php', {

@@ -32,7 +32,7 @@ function pageLoader(currentPage) {
     switch(currentPage) {
         case 'Home':
             category.innerHTML = ` 
-                <h1 class='category'>BEST SELLERS (pls change my color)</h1>
+                <h1 class='category'>Our Best Sellers</h1>
             `;                                          
             container.innerHTML = ``;
             fetchProducts(currentPage);

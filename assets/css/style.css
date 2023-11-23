@@ -186,13 +186,15 @@ input[type=button] {
     display: flex;
     font-family: 'Noto Serif Old Uyghur', serif;
     justify-content: center;
+    border-radius: 0.625rem;
     margin: 1rem;
-    width: calc(100vw - 1.5rem);
+    margin-right: auto;
+    margin-left: auto;
+    width: 50%;
 }
 
 nav {
     background-color: white;
-    border-top: 5px;
     border-color:rgba(0, 0, 0, 0.202);
     border-style: solid;
     box-shadow: 5px 5px 5px rgba(0,0,0,0.1);

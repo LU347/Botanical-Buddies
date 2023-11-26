@@ -11,7 +11,7 @@ if (isset($_SESSION['user_id'])) {
         header('refresh: 2, url=admin.html');
     }
     else{
-        header('refresh: 2; url=accountinfo.html');
+        header('refresh: 2; url=accountinfo.php');
     }
     
     // You can add more code here to work with the session data

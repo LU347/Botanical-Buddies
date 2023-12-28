@@ -1,8 +1,8 @@
 <?php
-$db_host = "partygoer.mysql.database.azure.com"; // Change this
-$db_user = "matthewmartinez"; // Change this
-$db_pass = "1qaz2wsx!QAZ@WSX"; // Change this
-$db_name = "herewego"; // Do not change */
+$db_host = "localhost";
+$db_user = "lucile";
+$db_pass = "h*/NrW[/Lx.JFb4M";
+$db_name = "botanical_buddies";
 
 $con = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
 
@@ -12,7 +12,7 @@ if (!$con) {
 
 if (isset($_POST['addToCart'])) {
     $plantName = $_POST['addToCart'];
-    $sql = "UPDATE `plant_data` SET `plant_quantity` = `plant_quantity` + 1 WHERE `plant_name` = '$plantName'";
+    $sql = "UPDATE `plants` SET `plant_quantity` = `plant_quantity` + 1 WHERE `plant_name` = '$plantName'";
     $result = mysqli_query($con, $sql);
 
     if (!$result) {
@@ -23,7 +23,7 @@ if (isset($_POST['addToCart'])) {
 
 if (isset($_POST['Search'])) {
     $searchQuery = $_POST['Search'];
-    $sql = "SELECT * FROM `plant_data` WHERE `plant_quantity_available` > 1 AND `plant_name` LIKE '%$searchQuery%'";
+    $sql = "SELECT * FROM `plants` WHERE `plant_quantity_available` > 1 AND `plant_name` LIKE '%$searchQuery%'";
     $result = mysqli_query($con, $sql);
     sendPlantData($result);
 }
@@ -41,22 +41,22 @@ if (isset($_POST['sortBy']) && isset($_POST['currentPage'])) {
 
     switch($order) {
         case 'ASCPrice':
-            $sql = "SELECT * FROM `plant_data` WHERE `plant_quantity_available` > 1 AND $andCase ORDER BY `plant_price` ASC";
+            $sql = "SELECT * FROM `plants` WHERE `plant_quantity_available` > 1 AND $andCase ORDER BY `plant_price` ASC";
             break;
         case 'DESCPrice':
-            $sql = "SELECT * FROM `plant_data` WHERE `plant_quantity_available` > 1 AND $andCase ORDER BY `plant_price` DESC";
+            $sql = "SELECT * FROM `plants` WHERE `plant_quantity_available` > 1 AND $andCase ORDER BY `plant_price` DESC";
             break;
         case 'ASCLetters':
-            $sql = "SELECT * FROM `plant_data` WHERE `plant_quantity_available` > 1 AND $andCase ORDER BY `plant_name` ASC";
+            $sql = "SELECT * FROM `plants` WHERE `plant_quantity_available` > 1 AND $andCase ORDER BY `plant_name` ASC";
             break;
         case 'DESCLetters':
-            $sql = "SELECT * FROM `plant_data` WHERE `plant_quantity_available` > 1 AND $andCase ORDER BY `plant_name` DESC";
+            $sql = "SELECT * FROM `plants` WHERE `plant_quantity_available` > 1 AND $andCase ORDER BY `plant_name` DESC";
             break;
         case 'ASCQuantAvail':
-            $sql = "SELECT * FROM `plant_data` WHERE `plant_quantity_available` > 1 AND $andCase ORDER BY `plant_quantity_available` ASC";
+            $sql = "SELECT * FROM `plants` WHERE `plant_quantity_available` > 1 AND $andCase ORDER BY `plant_quantity_available` ASC";
             break;
         case 'DESCQuantAvail':
-            $sql = "SELECT * FROM `plant_data` WHERE `plant_quantity_available` > 1 AND $andCase ORDER BY `plant_quantity_available` DESC";
+            $sql = "SELECT * FROM `plants` WHERE `plant_quantity_available` > 1 AND $andCase ORDER BY `plant_quantity_available` DESC";
             break;
 
     }
@@ -70,13 +70,13 @@ if (isset($_POST['itemName'])) {
     $result = '';
     switch($itemName) {
         case 'Home':
-            $sql = "SELECT * FROM `plant_data` WHERE `plant_quantity_available` < 50 AND `plant_quantity_available` > 0 ORDER BY `plant_quantity_available` ASC"; //for best sellers
+            $sql = "SELECT * FROM `plants` WHERE `plant_quantity_available` < 50 AND `plant_quantity_available` > 0 ORDER BY `plant_quantity_available` ASC"; //for best sellers
             break;
         case 'All':
-            $sql = "SELECT * FROM `plant_data` WHERE `plant_quantity_available` > 0 ORDER BY `plant_name`";
+            $sql = "SELECT * FROM `plants` WHERE `plant_quantity_available` > 0 ORDER BY `plant_name`";
             break;
         default:
-            $sql = "SELECT * FROM `plant_data` WHERE `plant_quantity_available` > 0 AND `plant_type` = '$itemName'";
+            $sql = "SELECT * FROM `plants` WHERE `plant_quantity_available` > 0 AND `plant_type` = '$itemName'";
     }
     $result = mysqli_query($con, $sql);
     sendPlantData($result);
